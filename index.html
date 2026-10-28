@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="kk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BilimTech — Білімге бастар цифрлық қадам</title><meta name="description" content="BilimTech — информатика пәнінен 3, 7 және 9-сыныптарға арналған оқу материалдары">
+<style>
+:root{--blue:#066bfa;--navy:#0c236b;--sky:#eaf8ff;--text:#0d245f;--muted:#526c9f;--line:#d8e7ff;--shadow:0 10px 24px rgba(34,95,190,.095);font-family:'Segoe UI',Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);background:#f5faff}button,input{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #f8aa24;outline-offset:3px}.hide{display:none!important}
+.sitehead{background:#fff;position:sticky;top:0;z-index:30;box-shadow:0 1px 0 #e3eefd}.head-inner{max-width:1470px;margin:auto;padding:13px 28px;min-height:75px;display:flex;gap:26px;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center;gap:12px;flex-shrink:0}.logo-icon{font-size:37px;filter:drop-shadow(0 2px 4px #1a6dff33)}.logo-title{font-size:33px;line-height:1;font-weight:950;letter-spacing:-1.5px;color:#0b256b}.logo-title span{color:#087fff}.tagline{font-size:12px;letter-spacing:.2px;color:#315aa6;margin-top:5px;font-weight:600}.navlinks{display:flex;align-items:center;gap:5px;flex-wrap:wrap}.navlinks a{padding:11px 15px;border-radius:60px;color:#092461;font-weight:700;font-size:14px;white-space:nowrap}.navlinks a.active,.navlinks a:hover{background:#e2f4ff;color:#006df9}.search-wrap{position:relative;width:min(270px,23vw);min-width:160px}.search{width:100%;padding:12px 16px 12px 42px;border:1px solid #c2dfff;border-radius:999px;color:var(--navy);outline:none;background:#fff}.search-wrap::before{content:'⌕';position:absolute;top:4px;left:15px;color:#1d5ab2;font-size:29px;pointer-events:none}.results{position:absolute;top:110%;right:0;width:330px;max-width:90vw;background:#fff;border-radius:14px;border:1px solid #bfe0ff;box-shadow:0 16px 32px #0b35762c;overflow:hidden;z-index:80}.results a{display:block;padding:11px;border-bottom:1px solid #eaf0fa;font-size:13px}.results a:hover{background:#eef7ff}.results p{padding:12px;margin:0;font-size:13px;color:var(--muted)}
+.hero{background:linear-gradient(90deg,#eefaff 0,#eefaff 39%,#d9f5ff 100%);border-bottom:1px solid #dbf0ff}.hero-inner{margin:auto;max-width:1470px;min-height:335px;display:grid;grid-template-columns:44% 56%;align-items:center}.hero-copy{padding:34px 30px 35px 44px;position:relative;z-index:2}.hero-copy h1{font-size:clamp(49px,5.5vw,86px);letter-spacing:-3px;margin:0;line-height:.98;color:#08246a}.hero-copy h1 span{color:#087cff}.hero-copy h2{font-size:clamp(23px,2.4vw,38px);line-height:1.17;margin:8px 0 13px;color:#0a286c}.hero-copy p{font-size:17px;line-height:1.5;max-width:530px;margin:0 0 20px;color:#37578f}.hero-art{height:100%;width:100%;min-height:305px;background:url('assets/hero-tech.webp') right center / 90% auto no-repeat;mask-image:linear-gradient(to right,transparent 0%,black 12%);filter:drop-shadow(0 12px 24px rgba(7,108,255,.18));}.primary{display:inline-flex;align-items:center;gap:9px;background:#0879ff;color:white;border:0;border-radius:13px;padding:15px 23px;font-weight:800;box-shadow:0 7px 14px #1971ee29}.primary:hover{background:#005edc}.mini-values{display:flex;flex-wrap:wrap;gap:20px;margin-top:15px;color:#305490;font-size:12px;font-weight:700}.mini-values span{display:inline-flex;align-items:center;gap:6px}.mini-values b{color:#0a9b87}
+.max{max-width:1470px;margin:auto;padding:0 28px}.collection-heading{text-align:center;margin:24px 0 21px}.collection-heading h2{font-size:clamp(25px,2.5vw,34px);margin:0 0 5px;line-height:1.2}.collection-heading p{margin:0;font-size:15px;color:#52709f}.collection-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0 0 35px}.grade{padding:16px;border:1px solid;border-radius:17px;display:flex;flex-direction:column;gap:12px;min-height:234px;background:#f2fffa;border-color:#cbeede}.grade.blue{background:#eefaff;border-color:#c8e7ff}.grade.purple{background:#f5f2ff;border-color:#ddd6ff}.grade.orange{background:#fff9ea;border-color:#ffe2ad}.grade-top{display:flex;gap:12px;align-items:flex-start;flex:1}.grade img{width:42%;max-width:155px;aspect-ratio:1;object-fit:cover;border-radius:14px;box-shadow:0 4px 8px #1d58a51c}.grade h3{font-size:25px;line-height:1.1;margin:3px 0 4px;color:#05957b}.grade.blue h3{color:#056cf3}.grade.purple h3{color:#6c38e4}.grade.orange h3{color:#ec8300}.grade .subtitle{font-size:13px;font-weight:800;line-height:1.2;margin:0 0 11px}.grade ul{list-style:none;padding:0;margin:0;font-size:11.5px;line-height:1.65;color:#214172}.grade li::before{content:'●';font-size:9px;color:#03a584;margin-right:6px}.grade.blue li::before{color:#097dff}.grade.purple li::before{color:#7649ff}.grade.orange li::before{color:#ef9b15}.grade-btn{display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(90deg,#009d83,#00b69b);color:white;border-radius:12px;padding:13px 9px;font-size:14px;font-weight:800;transition:transform .15s,filter .15s}.grade-btn:hover{transform:translateY(-2px);filter:brightness(1.03)}.grade.blue .grade-btn{background:linear-gradient(90deg,#0758f9,#087dfd)}.grade.purple .grade-btn{background:linear-gradient(90deg,#5f2add,#7b3dec)}.grade.orange .grade-btn{background:linear-gradient(90deg,#f28e00,#ff9c00)}.grade-btn span{font-size:20px}
+.page{padding:22px 0 55px}.panel{background:white;border-radius:21px;border:1px solid #cee2ff;box-shadow:var(--shadow);padding:24px 24px 28px}.crumb{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:13px;color:#5374a7;margin-bottom:15px}.crumb a{color:#086cea;font-weight:700}.crumb a:hover{text-decoration:underline}.page-title{display:flex;align-items:center;gap:13px}.page-title .symbol{background:#e6f6ff;color:#0583fa;border-radius:15px;padding:9px;font-size:28px}.page-title h1{font-size:clamp(22px,3vw,31px);line-height:1.25;margin:0}.page-sub{color:#5872a2;margin:7px 0 21px;line-height:1.55}.topics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.topic{display:flex;gap:10px;min-height:128px;border:1px solid #dfeafa;border-radius:15px;background:linear-gradient(135deg,#fff,#f4f9ff);padding:14px;text-align:left;align-items:flex-start;transition:transform .15s,box-shadow .15s}.topic:hover{border-color:#1784ff;box-shadow:0 6px 16px #1971ee20;transform:translateY(-2px)}.topic .num{min-width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#cfeeff;color:#075fc7;font-weight:900;font-size:19px}.topic:nth-child(2n) .num{background:#e9dcff;color:#6435da}.topic:nth-child(3n) .num{background:#def8ee;color:#089679}.topic strong{font-size:13px;line-height:1.37;display:block;color:#173b79}.topic .bottom{display:block;margin-top:10px;font-size:11px;color:#5f7aab}.topic.active{background:#e8f5ff;border-color:#007aff;box-shadow:inset 0 0 0 1px #007aff}.topic.active .num{background:#007aff;color:white}
+.lesson-top{background:linear-gradient(120deg,#eff7ff,#edfbff);padding:19px;border-radius:16px;margin-bottom:21px;border:1px solid #d4eaff}.lesson-pill{background:#d0efff;display:inline-block;font-size:12px;font-weight:900;color:#0861bd;border-radius:18px;padding:6px 12px;margin-bottom:8px}.lesson-top h1{font-size:clamp(21px,2.5vw,29px);margin:0 0 7px;line-height:1.27}.lesson-top p{font-size:13px;color:#506d9b;margin:0}.backline{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 12px}.backline a{font-size:13px;color:#006af6;font-weight:800}.material-shortcuts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}.shortcut{border:0;padding:15px 12px;border-radius:15px;color:white;text-align:left;display:flex;align-items:center;gap:12px;min-height:90px;transition:transform .15s}.shortcut:hover{transform:translateY(-2px)}.shortcut b{font-size:15px;display:block}.shortcut small{font-size:11px;display:block;margin-top:5px;color:#ffffffec}.shortcut .ico{background:#ffffff30;border-radius:12px;display:grid;place-items:center;width:44px;height:44px;font-size:24px;flex:none}.sc-blue{background:linear-gradient(110deg,#0565ff,#009dff)}.sc-green{background:linear-gradient(110deg,#00a97c,#0bc99f)}.sc-orange{background:linear-gradient(110deg,#ff8d1e,#ffb42d)}.sc-pink{background:linear-gradient(110deg,#ee2f7b,#ff627d)}.section-block{margin:15px 0 20px;border:1px solid #dce9fd;border-radius:16px;background:white;overflow:hidden}.section-label{display:flex;align-items:center;gap:9px;color:white;font-weight:850;padding:13px 17px;font-size:15px}.section-label small{margin-left:auto;font-weight:600;font-size:12px}.section-inner{padding:15px;display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:13px}.resource{background:#f9fbff;min-width:0;border:1px solid #e0eafb;border-radius:12px;padding:11px;text-align:left;cursor:pointer}.resource:hover{border-color:#3296ff;box-shadow:0 5px 14px #1774db1c}.thumb{height:110px;border-radius:10px;background:linear-gradient(130deg,#ddecff,#e7efff);display:grid;place-items:center;overflow:hidden;margin-bottom:9px;font-size:38px;color:#1879de}.thumb img{width:100%;height:100%;object-fit:contain}.resource.video .thumb img{object-fit:cover}.resource strong{display:block;font-size:13px;line-height:1.3;overflow-wrap:anywhere}.resource .hint{font-size:11px;color:#687fa2;margin-top:4px}.empty{display:grid;place-items:center;text-align:center;background:#f5faff;border-radius:15px;border:1px dashed #bad5ff;padding:45px 15px;color:#6a84ac}.empty .ico{font-size:40px}.footer{border-top:1px solid #dbeaff;background:#fff;padding:22px 30px;text-align:center;color:#4d70aa;font-size:13px}
+.overlay{position:fixed;inset:0;z-index:100;background:#0a1b45c9;padding:22px;display:none;align-items:center;justify-content:center}.overlay.open{display:flex}.modal{display:flex;flex-direction:column;width:min(1160px,97vw);height:min(850px,96vh);background:white;border-radius:16px;overflow:hidden;box-shadow:0 25px 70px #00133066}.modal-head{padding:12px 16px;border-bottom:1px solid #d8e7fa;display:flex;justify-content:space-between;align-items:center;gap:8px}.modal-head strong{font-size:14px;line-height:1.4}.modal-actions{display:flex;align-items:center;gap:8px}.modal-actions a,.modal-actions button{background:#e8f3ff;color:#075dca;border:0;border-radius:9px;font-weight:800;padding:9px 11px;font-size:12px;white-space:nowrap}.modal-actions button{background:#e73557;color:white}.modal-body{overflow:auto;flex:1;padding:15px;display:flex;flex-direction:column;align-items:center;gap:12px;background:#f1f6ff}.modal-body .slide-img{max-height:calc(100% - 100px);max-width:100%;object-fit:contain;border-radius:9px;box-shadow:0 4px 16px #18397318}.modal-body iframe{width:100%;height:100%;border:0;min-height:450px;background:#fff}.modal-body video{max-width:100%;max-height:100%;width:auto;border-radius:12px;background:black}.slide-tools{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}.slide-tools button,.slide-links a{border:0;border-radius:9px;background:#1178ff;color:#fff;font-weight:800;font-size:13px;padding:9px 15px}.slide-tools button:disabled{background:#d7e1ef;color:#7a8aa4;cursor:default}.slide-links{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}.slide-links a{background:#009a87}
+@media(max-width:1100px){.head-inner{gap:8px;flex-wrap:wrap}.navlinks{order:3;width:100%;justify-content:center}.hero-inner{grid-template-columns:48% 52%}.grade-grid{display:grid}.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.topics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.head-inner{padding:12px 16px}.logo-title{font-size:27px}.navlinks a{font-size:12px;padding:8px 10px}.search-wrap{width:170px;min-width:0}.hero-inner{grid-template-columns:1fr}.hero-copy{padding:31px 20px 0}.hero-copy h1{font-size:59px}.hero-art{height:190px;min-height:190px;mask-image:linear-gradient(to bottom,transparent 0,black 20%)}.hero-copy p{font-size:14px}.max{padding:0 12px}.collection-grid{grid-template-columns:1fr}.grade-top{align-items:center}.grade img{width:145px}.topics{grid-template-columns:1fr}.material-shortcuts{grid-template-columns:repeat(2,1fr)}.panel{padding:16px}.modal-actions{gap:3px}.modal-head{padding:10px}.modal-actions a,.modal-actions button{padding:7px;font-size:11px}}
+@media(max-width:390px){.logo-title{font-size:23px}.search-wrap{width:125px}.grade img{width:115px}.material-shortcuts{grid-template-columns:1fr}.navlinks{gap:0}}
+
+/* Informatics skills catalogue — BilimTech's own interface inspired by topic-based learning */
+:root{--ink:#102563;--edge:#dbe8fa;--lightblue:#f4f9ff;--bright:#0876ff;--mint:#08ba98}
+body{background:linear-gradient(180deg,#f3faff 0%,#f8faff 50%,#f5f8ff 100%)}
+.sitehead{border-bottom:1px solid #e3efff;background:#fff}
+.navlinks a.active{background:#e8f4ff;color:#0068e8}
+.platform-head{background:linear-gradient(110deg,#0a2a79 0%,#075bc6 55%,#007bdc 100%);border-radius:25px;color:white;min-height:220px;padding:33px 38px;display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:25px;position:relative;overflow:hidden;box-shadow:0 15px 45px #0656b32b;margin-bottom:22px}
+.platform-head:before{content:'';position:absolute;border:2px solid #ffffff2c;border-radius:50%;height:330px;width:330px;right:80px;top:-100px;pointer-events:none}
+.platform-head h1{font-size:clamp(26px,3.5vw,43px);margin:8px 0 8px;line-height:1.12;letter-spacing:-.6px}
+.platform-head p{color:#e0f6ff;line-height:1.6;font-size:15px;margin:0;max-width:710px}
+.platform-head .kicker{font-size:12px;font-weight:900;letter-spacing:.6px;color:#fff;display:inline-flex;align-items:center;gap:7px;background:#ffffff29;border:1px solid #ffffff35;padding:9px 13px;border-radius:999px}
+.platform-head img{position:relative;z-index:1;align-self:center;justify-self:center;width:220px;max-height:180px;object-fit:contain;filter:drop-shadow(0 9px 10px #001b5355);border-radius:25px}
+.catalog-layout{display:grid;grid-template-columns:238px minmax(0,1fr);gap:22px;align-items:start}
+.catalog-side,.catalog-main{background:#fff;border:1px solid var(--edge);border-radius:21px;box-shadow:0 10px 30px #144c9b0d;overflow:hidden}
+.catalog-side{position:sticky;top:103px;padding:16px}
+.catalog-side h3{font-size:13px;color:#687b9a;margin:4px 8px 12px;text-transform:uppercase;letter-spacing:.6px}
+.catalog-side a{display:flex;align-items:center;gap:11px;text-decoration:none;font-size:13px;color:#264174;border-radius:12px;padding:12px 10px;margin-bottom:4px;font-weight:750}
+.catalog-side a.active{background:#eaf3ff;color:#006deb}
+.catalog-side a .mark{font-size:18px;width:25px;text-align:center}
+.catalog-side .helpnote{background:#ebfbf7;color:#13745e;border-radius:15px;padding:13px;margin-top:15px;font-size:12px;line-height:1.55}
+.catalog-main{padding:24px}
+.catalog-main h2{margin:0;color:#0e2b6c;font-size:25px}
+.catalog-main .subtext{color:#6b7d9e;line-height:1.55;margin:10px 0 18px;font-size:14px}
+.skill-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:14px 0 20px}
+.count-tag{color:#2561bd;background:#eaf4ff;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:850}
+.skill-search{font:inherit;padding:12px 15px;border:1px solid #cbdef8;border-radius:13px;width:min(360px,100%);background:#f9fcff;color:#17305d}
+.skill-search:focus{outline:2px solid #6cb9ff}
+.filterbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:19px}
+.filterbar button{background:#f3f7ff;border:1px solid #d9e5fa;border-radius:999px;color:#365786;padding:10px 14px;font-weight:750;font-size:12px}
+.filterbar button.active,.filterbar button:hover{background:#116ffc;border-color:#116ffc;color:#fff}
+.skill-group{margin-bottom:26px}
+.skill-group h3{font-size:17px;color:#10286d;margin:0 0 10px;display:flex;align-items:center;gap:9px}
+.skill-group h3:before{content:'';height:24px;width:6px;border-radius:9px;background:#007dff}
+.skill-group:nth-child(even) h3:before{background:#00bb99}
+.skill-table-head{display:grid;grid-template-columns:35% 28% 20% 17%;gap:10px;padding:13px 16px;border:1px solid #dae7fb;border-radius:12px 12px 0 0;background:#f0f7ff;color:#557398;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.3px}
+.skill-row{display:grid;grid-template-columns:35% 28% 20% 17%;gap:10px;align-items:center;border:1px solid #e4ecf7;border-top:0;padding:15px 16px;background:#fff;transition:background .15s}
+.skill-row:last-child{border-radius:0 0 14px 14px}
+.skill-row:hover{background:#f7fbff}
+.skill-name{display:flex;align-items:flex-start;gap:12px;min-width:0}
+.skill-num{display:grid;place-items:center;min-width:36px;height:36px;background:linear-gradient(140deg,#d9f2ff,#dceaff);border:1px solid #bce0ff;border-radius:13px;color:#056bce;font-weight:950}
+.skill-name strong{color:#122b67;line-height:1.45;font-size:13px}
+.skill-name small{display:block;font-size:11px;color:#7083a7;margin-top:5px}
+.skill-hint{font-size:12px;color:#506c94;line-height:1.45}
+.skill-pill{font-size:11px;border-radius:10px;background:#eff8ff;color:#1868c4;padding:8px 9px;font-weight:800;display:inline-block;line-height:1.4}
+.skill-pill.ready{background:#ddfaf0;color:#087d5b}
+.skill-open{background:linear-gradient(115deg,#0572ff,#00a8e8);border:0;border-radius:11px;color:white;padding:11px 9px;font-weight:850;font-size:12px;text-decoration:none;display:block;text-align:center;white-space:normal}
+.skill-open:hover{filter:brightness(.93)}
+.skill-cards{display:none}
+.training-banner{display:flex;align-items:center;gap:14px;background:linear-gradient(100deg,#e9f7ff,#e9fff8);border:1px solid #c8e9f8;border-radius:16px;padding:17px;margin-top:15px}
+.training-banner .emoji{font-size:32px}.training-banner strong{font-size:14px;color:#0d346d}.training-banner p{margin:5px 0 0;color:#436488;font-size:12px;line-height:1.5}
+.lesson-info{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;margin-bottom:22px}
+.lesson-details{background:#f1f8ff;border:1px solid #d6e9ff;border-radius:16px;padding:20px}
+.lesson-details h3{font-size:15px;color:#124d98;margin:0 0 10px}
+.lesson-details p{font-size:13px;line-height:1.7;color:#466181;margin:0}
+.lesson-details.tips{background:#eefcf8;border-color:#cdf1e4}
+.lesson-details.tips h3{color:#008a69}
+.lesson-quiz{background:white;border:1px solid #dbe9fb;border-radius:18px;overflow:hidden;margin:20px 0}
+.quiz-head{background:linear-gradient(115deg,#143c94,#0869e6);padding:17px 19px;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.quiz-head h3{margin:0;font-size:18px;color:white}.quiz-head span{font-size:12px;color:#d5e7ff}
+.quiz-inner{padding:18px}.quiz-question{font-size:15px;font-weight:850;margin:0 0 12px;color:#152f6f;line-height:1.5}
+.quiz-answers{display:grid;gap:9px}.quiz-answer{display:flex;text-align:left;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:#f7faff;border:1px solid #d7e7fa;color:#28416f;font-size:13px;font-weight:700}
+.quiz-answer:hover{background:#e8f4ff}.quiz-answer[disabled]{cursor:default}.quiz-answer.correct{background:#ddf9ee;border-color:#21b88b;color:#0d7656}.quiz-answer.wrong{background:#fff0f2;border-color:#f28a9e;color:#ac324b}
+.quiz-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:14px}.quiz-feedback{font-size:13px;font-weight:800;color:#0d8670}.quiz-next{background:#0b75f9;border:0;border-radius:10px;color:white;padding:11px 15px;font-size:12px;font-weight:850}.quiz-next:disabled{opacity:.35;cursor:default}.quiz-progress{font-size:12px;color:#6681a9}
+@media(max-width:1050px){.catalog-layout{grid-template-columns:190px minmax(0,1fr)}.skill-table-head{display:none}.skill-row{grid-template-columns:minmax(0,1.4fr) 1fr;gap:12px}.skill-hint{align-self:center}.skill-pill{align-self:center}.skill-open{max-width:200px}.catalog-side{top:140px}}
+@media(max-width:740px){.platform-head{grid-template-columns:1fr 120px;padding:24px 20px;gap:5px;min-height:170px}.platform-head img{width:125px}.platform-head p{font-size:12px}.catalog-layout{display:block}.catalog-side{position:static;display:flex;gap:6px;overflow:auto;margin-bottom:14px;padding:8px}.catalog-side h3,.catalog-side .helpnote{display:none}.catalog-side a{white-space:nowrap;margin:0;padding:10px}.catalog-side a .mark{display:none}.catalog-main{padding:17px}.skill-row{grid-template-columns:1fr;border:1px solid #e4ecf7;border-radius:13px;margin-bottom:9px;padding:14px}.skill-row:last-child{border-radius:13px}.skill-pill{max-width:max-content}.skill-open{max-width:none}.lesson-info{grid-template-columns:1fr}.training-banner{align-items:flex-start}}
+@media(max-width:440px){.platform-head img{display:none}.platform-head{grid-template-columns:1fr}.catalog-main h2{font-size:21px}.skill-search{width:100%}}
+
+
+/* A steady, moderately paced shimmer behind the hero illustration. */
+@keyframes bilimtechHeroFlow {
+  0% {background-position: 0% 50%;}
+  100% {background-position: 100% 45%;}
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero {animation: none !important;}
+}
+
+/* BilimTech — animated network background (decorative only) */
+#bilimtech-network {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 1;
+  mix-blend-mode: screen;
+}
+.hero{position:relative;}
+#app > *:not(.hero){position:relative;z-index:6;}
+.hero-inner{position:relative;}
+.hero-copy,.hero-art{position:relative;z-index:6;}
+body {
+  background: linear-gradient(138deg, #fbfdff 0%, #f0f9ff 52%, #f9f4ff 100%);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 17% 22%, #98eeff35, transparent 34%),
+              radial-gradient(circle at 85% 68%, #cec3ff45, transparent 40%);
+}
+body > .sitehead, body > #app, body > .footer {
+  position: relative;
+  z-index: 1;
+}
+body > .sitehead {position: sticky; z-index: 30;}
+.hero {background: linear-gradient(108deg, #eaf9ffde, #d8f0ffbb, #ecedffca); background-size: 180% 180%; animation: bilimtechHeroFlow 7s ease-in-out infinite alternate; overflow:hidden;}
+.panel, .catalog-side, .catalog-main {background: rgba(255,255,255,.96)}
+.grade {backdrop-filter: blur(3px);}
+#network-control {
+  margin-left: 7px;
+  flex-shrink: 0;
+  border: 1px solid #cbe3ff;
+  color: #0b68c5;
+  background: #e8f6ff;
+  border-radius: 100px;
+  font-size: 12px;
+  padding: 9px 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+#network-control:hover {background: #d5efff;}
+#network-control[aria-pressed="false"] {color:#536785;background:#f3f6fb;}
+@media (max-width: 700px) {#network-control {padding: 7px 10px;font-size: 11px;}}
+@media (prefers-reduced-motion: reduce) {#bilimtech-network {opacity: .25}}
+
+
+.lesson-step-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:20px;border-top:1px solid #dce9fd;padding-top:20px}
+.step-link{display:inline-flex;align-items:center;justify-content:center;border-radius:11px;padding:11px 14px;background:#eaf5ff;color:#0866d8;font-weight:800;font-size:13px;transition:transform .15s,background .15s}
+.step-link:hover{background:#d5ebff;transform:translateY(-2px)}.step-link.next{background:#057cf6;color:#fff}
+.skill-row:has(.skill-name strong):hover{background:#f5fbff}
+@media (max-width:650px){.lesson-step-nav{justify-content:center}.lesson-step-nav span{display:none}}
+
+.slide-links button{background:linear-gradient(115deg,#742df2,#e02f93);color:white;border:0;border-radius:9px;padding:10px 14px;font-weight:800;cursor:pointer}.slide-media{width:100%;display:flex;justify-content:center}.slide-media video{max-width:100%;border-radius:12px}.slide-img{user-select:none}.material-shortcuts:has(.shortcut:nth-child(5)){grid-template-columns:repeat(5,minmax(0,1fr))}@media(max-width:1000px){.material-shortcuts:has(.shortcut:nth-child(5)){grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:650px){.material-shortcuts:has(.shortcut:nth-child(5)){grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* BilimTech ninth-grade lesson shortcut, October 2026 */
+.grade-direct{display:block;margin:9px 3px 0;text-align:center;padding:10px 7px;border-radius:12px;color:#1854bb;background:#eff6ff;font-weight:800;font-size:13px;text-decoration:none;border:1px solid #b5d6ff;transition:.2s}
+.grade-direct:hover,.grade-direct:focus{background:#dceeff;transform:translateY(-2px)}
+.ready-lesson-banner{display:flex;gap:18px;justify-content:space-between;align-items:center;border-radius:18px;padding:20px 22px;margin:8px 0 22px;background:linear-gradient(110deg,#ecf8ff,#eeeaff);border:2px solid #97caff;box-shadow:0 8px 24px #075bb116}
+.ready-lesson-banner b{color:#037e68;font-size:13px}.ready-lesson-banner h3{margin:6px 0;font-size:19px;line-height:1.4;color:#113a82}.ready-lesson-banner p{margin:0;color:#43658a;font-size:13px}
+.ready-lesson-banner a{display:block;flex-shrink:0;padding:14px 18px;border-radius:13px;background:#086bfa;color:white;font-size:13px;font-weight:850;text-decoration:none;box-shadow:0 4px 12px #0e62c544}
+.ready-lesson-banner a:hover{background:#004fbc}
+@media(max-width:840px){.ready-lesson-banner{display:block}.ready-lesson-banner a{margin-top:14px;text-align:center}}
+
+/* === BilimTech Author's Library 2026 === */
+.book-hero{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px 32px;border-radius:23px;background:linear-gradient(120deg,#f1f7ff,#e8f9ff 54%,#f5edff);border:1px solid #c4dcff;box-shadow:0 14px 30px #1250a410;margin:16px 0 26px}
+.book-hero h1{font-size:clamp(24px,3.1vw,36px);color:#073d9c;margin:8px 0}
+.book-hero p{color:#4b6c9b;margin:0;line-height:1.55}
+.book-hero .book-hero-icon{font-size:66px;filter:drop-shadow(0 8px 9px #3774cb33)}
+.book-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+.book-card{display:grid;grid-template-columns:220px minmax(0,1fr);gap:26px;padding:22px;border-radius:20px;background:#fff;border:1px solid #d0e2ff;box-shadow:0 12px 33px #12387512;align-items:center}
+.book-card img{display:block;width:100%;aspect-ratio:595/842;object-fit:cover;background:#f3f7ff;border-radius:9px;box-shadow:0 12px 20px #0d29542b;border:1px solid #e0e8f4}
+.book-card h2{color:#073583;font-size:clamp(19px,2.3vw,26px);line-height:1.35;margin:10px 0}
+.book-card p,.book-reader-meta p{color:#516c93;line-height:1.6}
+.book-author{font-size:15px;color:#19498a;font-weight:750}
+.book-tags{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.book-tags span{border-radius:30px;background:#e9f2ff;color:#1258b2;padding:7px 10px;font-size:12px;font-weight:800}
+.book-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.book-actions a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:12px;padding:13px 18px;font-size:13px;font-weight:850;min-height:44px}
+.book-actions .book-primary{background:linear-gradient(110deg,#0874f9,#6544f5);color:#fff;box-shadow:0 5px 12px #0765e735}
+.book-actions .book-secondary{background:#eaf4ff;color:#0961c9;border:1px solid #b9dbff}
+.book-actions a:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.book-reader-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.book-reader-title{color:#103b82;font-size:clamp(19px,2.8vw,29px);line-height:1.3;margin:0 0 10px}
+.book-reader-frame{width:100%;height:min(85vh,900px);min-height:480px;border:1px solid #c9daf1;border-radius:16px;background:#fff;box-shadow:0 12px 28px #1b4e9c14}
+.book-reader-note{font-size:12px;color:#597399;margin:14px 0}
+@media(max-width:700px){.book-card{grid-template-columns:1fr;gap:15px}.book-card img{width:160px;margin:auto}.book-hero{padding:22px}.book-hero-icon{display:none}.book-reader-frame{height:76vh;min-height:430px}}
+
+</style></head><body><canvas id="bilimtech-network" aria-hidden="true"></canvas>
+<header class="sitehead"><div class="head-inner"><a class="logo" href="#/" aria-label="BilimTech басты бет"><span class="logo-icon">🎓</span><span><span class="logo-title">Bilim<span>Tech</span></span><span class="tagline" style="display:block">Білімге бастар цифрлық қадам</span></span></a><nav class="navlinks" aria-label="Сайт мәзірі"><a data-nav="home" href="#/">Басты бет</a><a data-nav="collections" href="#/collections">Жинақтар</a><a data-nav="documents" href="#/documents">Құжаттар</a><a data-nav="contact" href="#/contact">Байланыс</a><a data-nav="books" href="#/grade/books">📘 Кітап</a></nav><div class="search-wrap"><input id="search" class="search" placeholder="Іздеу..." autocomplete="off" aria-label="Тақырыптарды іздеу"><div id="searchResults" class="results hide"></div></div><button id="network-control" type="button" aria-pressed="true" title="Алдыңғы 3D анимацияны қосу немесе тоқтату">✦ 3D анимация</button></div></header>
+<div id="app"></div>
+<div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-label="Материалды қарау"><div class="modal"><div class="modal-head"><strong id="modalTitle">Материал</strong><div class="modal-actions"><a id="downloadFile" download>↓ Жүктеу</a><button type="button" id="closeModal">✕ Жабу</button></div></div><div id="modalBody" class="modal-body"></div></div></div>
+<footer class="footer">💙 BilimTech · Білімге бастар цифрлық қадам · Информатикаға арналған оқу материалдары</footer>
+<script>
+'use strict';
+const TOPICS=["Жеке қауіпсіздік және ондағы сервистік программалардың рөлі", "Ақпараттың өлшем бірліктері", "Ақпараттың өлшем бірліктері Практикум", "Ақпараттың өлшем бірліктері Практикум", "Ақпаратты өлшеу", "Ақпаратты өлшеу Практикум", "Мәтіндік ақпаратты және монохромды кескіндерді (ASCII, Unicode) кодтау БЖБ 1", "Мәтіндік ақпаратты және монохромды кескіндерді (ASCII, Unicode) кодтау Практикум"];
+const MATERIALS={
+ '9-сынып': {1: {"Слайд":[{"title":"Жасанды интеллектіні қолданудың әлеуметтік және этикалық аспектілері — 13 слайд","path":"materials/9-synyp/1-sabak/prezentatsiya.pdf","slides":["materials/9-synyp/1-sabak/slides/slide-01.jpg","materials/9-synyp/1-sabak/slides/slide-02.jpg","materials/9-synyp/1-sabak/slides/slide-03.jpg","materials/9-synyp/1-sabak/slides/slide-04.jpg","materials/9-synyp/1-sabak/slides/slide-05.jpg","materials/9-synyp/1-sabak/slides/slide-06.jpg","materials/9-synyp/1-sabak/slides/slide-07.jpg","materials/9-synyp/1-sabak/slides/slide-08.jpg","materials/9-synyp/1-sabak/slides/slide-09.jpg","materials/9-synyp/1-sabak/slides/slide-10.jpg","materials/9-synyp/1-sabak/slides/slide-11.jpg","materials/9-synyp/1-sabak/slides/slide-12.jpg","materials/9-synyp/1-sabak/slides/slide-13.jpg"],"slideLinks":{"9":["https://share.gemini.google/XQtCKTq0oC8t"],"10":["https://share.gemini.google/EjGALYhLoIzZ"]},"slideVideos":{"5":["materials/9-synyp/1-sabak/video_1.mp4"],"6":["materials/9-synyp/1-sabak/video_2.mp4"],"7":["materials/9-synyp/1-sabak/video_3.mp4"],"11":["materials/9-synyp/1-sabak/video_4.mp4"],"13":["materials/9-synyp/1-sabak/video_5.mp4","materials/9-synyp/1-sabak/video_6.mp4","materials/9-synyp/1-sabak/video_7.mp4"]}}],"ҚМЖ":[{"title":"ҚМЖ — 9-сынып, 1-сабақ (3 бет)","path":"materials/9-synyp/1-sabak/qmzh.pdf"}],"Жұмыс парағы":[{"title":"Жағдаяттық жұмыс парағы — ЖИ этикасы (1 бет)","path":"materials/9-synyp/1-sabak/jumys_paragy.pdf","slides":["materials/9-synyp/1-sabak/jumys-1.jpg"]}],"ЖИ видеолар":[{"title":"Мультимедиа1 — видео — дыбысы бар","path":"materials/9-synyp/1-sabak/video_1.mp4","thumb":"materials/9-synyp/1-sabak/video_1.jpg"},{"title":"Мультимедиа2 — видео — дыбысы бар","path":"materials/9-synyp/1-sabak/video_2.mp4","thumb":"materials/9-synyp/1-sabak/video_2.jpg"},{"title":"Мультимедиа3 — видео — дыбысы бар","path":"materials/9-synyp/1-sabak/video_3.mp4","thumb":"materials/9-synyp/1-sabak/video_3.jpg"},{"title":"11-слайдтағы бейне — дыбысы бар","path":"materials/9-synyp/1-sabak/video_4.mp4","thumb":"materials/9-synyp/1-sabak/video_4.jpg"},{"title":"13-слайдтағы қосымша бейне — дыбысы бар","path":"materials/9-synyp/1-sabak/video_5.mp4","thumb":"materials/9-synyp/1-sabak/video_5.jpg"},{"title":"Мультимедиа6 — видео — дыбысы бар","path":"materials/9-synyp/1-sabak/video_6.mp4","thumb":"materials/9-synyp/1-sabak/video_6.jpg"},{"title":"Мультимедиа4 — видео — дыбысы бар","path":"materials/9-synyp/1-sabak/video_7.mp4","thumb":"materials/9-synyp/1-sabak/video_7.jpg"}]}},
+ '7-сынып': {
+   1: {"Слайд":[{"title":"Презентация — Жеке қауіпсіздік (8 слайд)","path":"materials/7-synyp/1-sabak/prezentatsiya.pdf","slides":["materials/7-synyp/1-sabak/slides/slide-01.jpg","materials/7-synyp/1-sabak/slides/slide-02.jpg","materials/7-synyp/1-sabak/slides/slide-03.jpg","materials/7-synyp/1-sabak/slides/slide-04.jpg","materials/7-synyp/1-sabak/slides/slide-05.jpg","materials/7-synyp/1-sabak/slides/slide-06.jpg","materials/7-synyp/1-sabak/slides/slide-07.jpg","materials/7-synyp/1-sabak/slides/slide-08.jpg"],"slideLinks":{"7":["https://share.gemini.google/0X1IxW3me5Us"]},"slideVideos":{"3":["materials/7-synyp/1-sabak/video_1.mp4"],"4":["materials/7-synyp/1-sabak/video_2.mp4"],"8":["materials/7-synyp/1-sabak/video_3.mp4","materials/7-synyp/1-sabak/video_4.mp4","materials/7-synyp/1-sabak/video_5.mp4"]}}],"ҚМЖ":[{"title":"ҚМЖ — 7-сынып, 1-сабақ","path":"materials/7-synyp/1-sabak/qmzh.pdf"}],"Жұмыс парағы":[{"title":"Жұмыс парағы — 2 бет","path":"materials/7-synyp/1-sabak/jumys_paragy.pdf","slides":["materials/7-synyp/1-sabak/jumys-1.jpg","materials/7-synyp/1-sabak/jumys-2.jpg"],"slideLinks":{"1":["https://share.gemini.google/Tf4MwZchQfj2"],"2":["https://share.gemini.google/wfjXXbiw8qx9"]}}],"ЖИ видеолар":[{"title":"Мультимедиа1 — дыбысы бар видео","path":"materials/7-synyp/1-sabak/video_1.mp4","thumb":"materials/7-synyp/1-sabak/video_1.jpg"},{"title":"Мультимедиа2 — дыбысы бар видео","path":"materials/7-synyp/1-sabak/video_2.mp4","thumb":"materials/7-synyp/1-sabak/video_2.jpg"},{"title":"Мультимедиа3 — дыбысы бар видео","path":"materials/7-synyp/1-sabak/video_3.mp4","thumb":"materials/7-synyp/1-sabak/video_3.jpg"},{"title":"Мультимедиа4 — дыбысы бар видео","path":"materials/7-synyp/1-sabak/video_4.mp4","thumb":"materials/7-synyp/1-sabak/video_4.jpg"},{"title":"Мультимедиа5 — дыбысы бар видео","path":"materials/7-synyp/1-sabak/video_5.mp4","thumb":"materials/7-synyp/1-sabak/video_5.jpg"}],"Интерактивті тапсырмалар":[{"title":"Тапсырмалар — интерактивті жаттығулар","path":"materials/7-synyp/1-sabak/tapsyrmalar.html"}]},
+   2: {"Слайд":[{"title":"Ақпараттың өлшем бірліктері — 12 слайд, белсенді сілтемелер","path":"materials/7-synyp/2-sabak/prezentatsiya.pdf","slides":["materials/7-synyp/2-sabak/slides/slide-01.jpg","materials/7-synyp/2-sabak/slides/slide-02.jpg","materials/7-synyp/2-sabak/slides/slide-03.jpg","materials/7-synyp/2-sabak/slides/slide-04.jpg","materials/7-synyp/2-sabak/slides/slide-05.jpg","materials/7-synyp/2-sabak/slides/slide-06.jpg","materials/7-synyp/2-sabak/slides/slide-07.jpg","materials/7-synyp/2-sabak/slides/slide-08.jpg","materials/7-synyp/2-sabak/slides/slide-09.jpg","materials/7-synyp/2-sabak/slides/slide-10.jpg","materials/7-synyp/2-sabak/slides/slide-11.jpg","materials/7-synyp/2-sabak/slides/slide-12.jpg"],"slideLinks":{"6":["https://youtu.be/AOpzkEoRKao?feature=shared"],"7":["https://share.gemini.google/KyLxWc2kKSXR","materials/7-synyp/2-sabak/toptyq_zhumys.html"]},"slideVideos":{"3":["materials/7-synyp/2-sabak/video_1.mp4"],"5":["materials/7-synyp/2-sabak/video_2.mp4"],"6":["materials/7-synyp/2-sabak/video_3.mp4"],"7":["materials/7-synyp/2-sabak/slide-07-audio.mp3"],"9":["materials/7-synyp/2-sabak/video_4.mp4"]}}],"ҚМЖ":[{"title":"ҚМЖ — Ақпараттың өлшем бірліктері (4 бет)","path":"materials/7-synyp/2-sabak/qmzh.pdf"}],"Жұмыс парағы":[{"title":"Ақпараттың өлшем бірліктері — 2 бет","path":"materials/7-synyp/2-sabak/jumys_paragy.pdf","slides":["materials/7-synyp/2-sabak/jumys-1.jpg","materials/7-synyp/2-sabak/jumys-2.jpg"]}],"ЖИ видеолар":[{"title":"Мультимедиа1 — дыбысы бар видео","path":"materials/7-synyp/2-sabak/video_1.mp4","thumb":"materials/7-synyp/2-sabak/video_1.jpg"},{"title":"Мультимедиа2 — дыбысы бар видео","path":"materials/7-synyp/2-sabak/video_2.mp4","thumb":"materials/7-synyp/2-sabak/video_2.jpg"},{"title":"Мультимедиа3 — дыбысы бар видео","path":"materials/7-synyp/2-sabak/video_3.mp4","thumb":"materials/7-synyp/2-sabak/video_3.jpg"},{"title":"Мультимедиа4 — дыбысы бар видео","path":"materials/7-synyp/2-sabak/video_4.mp4","thumb":"materials/7-synyp/2-sabak/video_4.jpg"}],"Интерактивті тапсырмалар":[{"title":"Интернет-трафик — интерактивті топтық ойын","path":"materials/7-synyp/2-sabak/toptyq_zhumys.html"}],"Сергіту сәті":[{"title":"Өлшем бірліктері пирамидасы — ойнап үйрен","path":"materials/7-synyp/2-sabak/piramida.html","thumb":"materials/7-synyp/2-sabak/pyramid-3.jpg"}]},
+   3: {"Слайд":[{"title":"Ақпараттың өлшем бірліктері — практикум (10 слайд, сілтемелерімен)","path":"materials/7-synyp/3-sabak/prezentatsiya.pdf","slides":["materials/7-synyp/3-sabak/slides/slide-01.jpg","materials/7-synyp/3-sabak/slides/slide-02.jpg","materials/7-synyp/3-sabak/slides/slide-03.jpg","materials/7-synyp/3-sabak/slides/slide-04.jpg","materials/7-synyp/3-sabak/slides/slide-05.jpg","materials/7-synyp/3-sabak/slides/slide-06.jpg","materials/7-synyp/3-sabak/slides/slide-07.jpg","materials/7-synyp/3-sabak/slides/slide-08.jpg","materials/7-synyp/3-sabak/slides/slide-09.jpg","materials/7-synyp/3-sabak/slides/slide-10.jpg"],"slideLinks":{"5":["https://share.gemini.google/BAQEmFuMeh0y"],"9":["https://share.gemini.google/FcmS7ThtrP1H"]},"slideVideos":{"3":["materials/7-synyp/3-sabak/video_1.mp4"],"6":["materials/7-synyp/3-sabak/video_2.mp4"],"7":["materials/7-synyp/3-sabak/video_3.mp4"],"8":["materials/7-synyp/3-sabak/video_4.mp4"]}}],"ҚМЖ":[{"title":"ҚМЖ — 7-сынып, 3-сабақ (4 бет)","path":"materials/7-synyp/3-sabak/qmzh.pdf"}],"Жұмыс парағы":[{"title":"Ақпараттың өлшем бірліктері — практикум (2 бет)","path":"materials/7-synyp/3-sabak/jumys_paragy.pdf","slides":["materials/7-synyp/3-sabak/jumys-1.jpg","materials/7-synyp/3-sabak/jumys-2.jpg"]}],"ЖИ видеолар":[{"title":"Мультимедиа1(2).MOV — дыбысы бар видео","path":"materials/7-synyp/3-sabak/video_1.mp4","thumb":"materials/7-synyp/3-sabak/video_1.jpg"},{"title":"video5287289575293640024.mp4 — дыбысы бар видео","path":"materials/7-synyp/3-sabak/video_2.mp4","thumb":"materials/7-synyp/3-sabak/video_2.jpg"},{"title":"IMG_0793.MOV — дыбысы бар видео","path":"materials/7-synyp/3-sabak/video_3.mp4","thumb":"materials/7-synyp/3-sabak/video_3.jpg"},{"title":"Презентация ішіндегі 8-слайд видеосы — дыбысы бар видео","path":"materials/7-synyp/3-sabak/video_4.mp4","thumb":"materials/7-synyp/3-sabak/video_4.jpg"},{"title":"IMG_0810.MOV — дыбысы бар видео","path":"materials/7-synyp/3-sabak/video_5.mp4","thumb":"materials/7-synyp/3-sabak/video_5.jpg"}]},
+   7: {
+     "Слайд": [
+          {
+               "title": "Презентация (3).pptx",
+               "path": "materials/7-synyp/7-sabak/slaid.pdf", "slides": ["materials/7-synyp/7-sabak/prezentatsiya_slides/slide-01.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-02.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-03.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-04.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-05.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-06.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-07.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-08.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-09.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-10.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-11.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-12.jpg", "materials/7-synyp/7-sabak/prezentatsiya_slides/slide-13.jpg"], "slideLinks": {"4": ["https://informatika-card-club.aya-abdi1.chatgpt.site/"], "8": ["https://share.gemini.google/X8X9wHczfz4I"], "13": ["https://kod-refleksiya.aya-abdi1.chatgpt.site/"]}
+          }
+     ],
+     "ҚМЖ": [
+          {
+               "title": "ҚМЖ саралауымен (1).docx",
+               "path": "materials/7-synyp/7-sabak/qmzh.pdf"
+          }
+     ],
+     "Жұмыс парағы": [
+          {
+               "title": "Жұмыс парағы .pptx",
+               "path": "materials/7-synyp/7-sabak/jumys_paragy.pdf", "slides": ["materials/7-synyp/7-sabak/jumys_slide-1.png", "materials/7-synyp/7-sabak/jumys_slide-2.png"]
+          }
+     ],
+     "ЖИ видеолар": [
+      {
+            "title": "Мультимедиа2.mp4",
+            "path": "materials/7-synyp/7-sabak/video_1.mp4", "thumb": "assets/video_1.jpg"
+      },
+      {
+            "title": "IMG_3011.MP4",
+            "path": "materials/7-synyp/7-sabak/video_2.mp4", "thumb": "assets/video_2.jpg"
+      },
+      {
+            "title": "Мультимедиа1.MOV",
+            "path": "materials/7-synyp/7-sabak/video_3.mp4", "thumb": "assets/video_3.jpg"
+      },
+      {
+            "title": "Мультимедиа3.MOV",
+            "path": "materials/7-synyp/7-sabak/video_4.mp4", "thumb": "assets/video_4.jpg"
+      },
+      {
+            "title": "IMG_3019.MOV",
+            "path": "materials/7-synyp/7-sabak/video_6.mp4", "thumb": "assets/video_6.jpg"
+      },
+      {
+            "title": "IMG_3006 (1).MOV",
+            "path": "materials/7-synyp/7-sabak/video_7.mp4", "thumb": "assets/video_7.jpg"
+      }
+]
+}
+ }
+};
+const grades={3:{name:'3-сынып',image:'grade3.webp',klass:'',title:'Цифрлық сауаттылық',items:['Компьютермен жұмыс','Ақпарат және қауіпсіздік','Логикалық тапсырмалар']},7:{name:'7-сынып',image:'grade7.webp',klass:'blue',title:'Информатика әлемі',items:['Тақырыптық тапсырмалар','Практикалық жұмыстар','Кодпен жұмыс','Тест тапсырмалары']},9:{name:'9-сынып',image:'grade9.webp',klass:'purple',title:'Жасанды интеллект және компьютерлік желілер',items:['ЖИ этикасы бойынша 1-сабақ дайын','13 слайд, ҚМЖ, жұмыс парағы','7 бейнематериал және онлайн тапсырмалар']},books:{name:'Кітап',image:'books.webp',klass:'orange',title:'Оқу — білімнің кілті',items:['Информатика бойынша электронды кітаптар','Әдістемелік құралдар','Қосымша әдебиеттер']}};
+const $=id=>document.getElementById(id);
+const path=p=>p.split('/').map(encodeURIComponent).join('/');
+const el=(tag,cls='',content='')=>{let e=document.createElement(tag);if(cls)e.className=cls;if(content)e.textContent=content;return e};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function hero(){return `<section class="hero"><div class="hero-inner"><div class="hero-copy"><h1>Bilim<span>Tech</span></h1><h2>Білімге бастар цифрлық қадам</h2><p>Информатика пәнінен 3, 7 және 9-сыныптарға арналған сапалы оқу-әдістемелік материалдар жинағы. Оқу, ойлау, дамыту — бәрі бір жерде!</p><a class="primary" href="#/collections">📂 Жинақтарды қарау　 →</a><div class="mini-values"><span><b>✦</b> Сапалы материалдар</span><span><b>▣</b> Заманауи дизайн</span><span><b>▥</b> Жеңіл қолданыс</span></div></div><div class="hero-art" aria-label="Код жазылған ноутбук, робот және информатика кітаптары" role="img"></div></div></section>`}
+function card(g){let d=grades[g],href=`#/grade/${g}`;return `<article class="grade ${d.klass}"><div class="grade-top"><img src="assets/${d.image}" alt="${d.name} информатика иллюстрациясы" loading="lazy"><div><h3>${d.name}</h3><p class="subtitle">${d.title}</p><ul>${d.items.map(t=>`<li>${t}</li>`).join('')}</ul></div></div><a class="grade-btn" href="${href}"><span>▣</span> Тақырыптарға өту　 →</a></article>`}
+function collections(){return `<section class="max" id="collections"><div class="collection-heading"><h2>Сыныптарға арналған жинақтар</h2><p>Әр сыныпқа жеке бөлім. Қажетті материалдарды ашып қараңыз.</p></div><div class="collection-grid">${['3','7','9','books'].map(card).join('')}</div></section>`}
+function crumbs(parts){return `<div class="crumb"><a href="#/">⌂ Басты бет</a>${parts.map(x=>`<span>›</span><a href="${x[1]}">${esc(x[0])}</a>`).join('')}</div>`}
+function topics(active){return `<div class="topics">${TOPICS.map((t,i)=>`<a class="topic ${active===i+1?'active':''}" href="#/lesson/7/${i+1}"><span class="num">${i+1}</span><span><strong>${esc(t)}</strong><span class="bottom">${i===0?'● 5 материал түрі':i===6?'● 4 материал түрі':'Тақырыпты ашу →'}</span></span></a>`).join('')}</div>`}
+function pageHome(){return hero()+collections()}
+
+const EXPLANATIONS=[
+ ['Компьютерде және интернетте жеке ақпаратты қорғау, қауіпсіз пароль құру және қорғаныс программаларын пайдалану.','Қауіпсіздік ережелерін қайталап, күмәнді сілтемелерді ашпаңыз.'],
+ ['Бит, байт, килобайт және мегабайт арасындағы өлшем бірліктерінің байланысы.','Бит пен байттың айырмашылығын есте сақтап, қарапайым есептерді орындаңыз.'],
+ ['Ақпарат көлемін кіші бірліктен үлкен бірлікке айналдыруға арналған есептер.','1024 коэффициентін пайдаланып, жауапты өз бетіңізше тексеріңіз.'],
+ ['Ақпарат көлеміне қатысты есептерді бекіту және нәтижені салыстыру.','Мәтіндік есептің берілгенін белгілеп, өлшем бірлігін міндетті түрде жазыңыз.'],
+ ['Ақпарат мөлшерін санмен сипаттау және қарапайым мысалдарды талдау.','Берілген ақпарат көлемін есептеп, неге солай екенін түсіндіріңіз.'],
+ ['Ақпарат мөлшері бойынша практикалық есептерді кезең-кезеңімен шығару.','Шығарылған амалдардың дұрыстығын кері есептеу арқылы тексеріңіз.'],
+ ['Мәтіндік ақпаратты ASCII және Unicode арқылы кодтау, монохромды кескінді биттер арқылы ұсыну.','Алдымен слайдтарды қарап, жұмыс парағын орындаңыз, содан кейін видеоларды көріңіз.'],
+ ['ASCII, Unicode және ақ-қара кескіндерді кодтауды есептер арқылы бекіту.','Таңбалар санын, кодтау тәсілін және кескін пиксельдерін мұқият ажыратыңыз.']
+];
+const QUIZZES=[
+ [{q:'Қауіпсіз парольдің белгісі қандай?',a:['Тек өз атыңнан тұрады','Ұзын әрі әртүрлі таңбалардан тұрады','Барлық сайтқа бірдей қойылады'],correct:1},{q:'Белгісіз жіберушінің күмәнді сілтемесін көрсең, не істейсің?',a:['Дереу ашамын','Достарыма жіберемін','Ашпай, ересекке не мұғалімге хабарлаймын'],correct:2},{q:'Антивирус программасының негізгі қызметі қандай?',a:['Зиянды программаларды анықтауға көмектесу','Экран өлшемін үлкейту','Мәтін теру'],correct:0}],
+ [{q:'1 байт неше биттен тұрады?',a:['4 бит','8 бит','16 бит'],correct:1},{q:'1 КБ қанша байт (екілік есептеуде)?',a:['100','1024','2048'],correct:1},{q:'Ақпарат өлшемінің ең кіші бірлігі?',a:['Бит','Байт','Мегабайт'],correct:0}],
+ [{q:'2 КБ неше байт?',a:['2048','200','1024'],correct:0},{q:'3072 байт неше КБ?',a:['2 КБ','3 КБ','4 КБ'],correct:1},{q:'2 МБ неше КБ?',a:['2000','1024','2048'],correct:2}],
+ [{q:'4096 байт неше КБ?',a:['4','2','8'],correct:0},{q:'5 КБ неше байт?',a:['5120','5000','1024'],correct:0},{q:'10240 байт неше КБ?',a:['100','10','5'],correct:1}],
+ [{q:'Ақпарат көлемінің өлшем бірлігі?',a:['Байт','Метр','Секунд'],correct:0},{q:'16 бит неше байт?',a:['2','4','16'],correct:0},{q:'Ақпарат көлемін өлшеуде қандай бірлік қолданылады?',a:['Килограмм','Килобайт','Километр'],correct:1}],
+ [{q:'8 КБ неше байт?',a:['8192','800','1024'],correct:0},{q:'1 МБ неше КБ (екілік есептеуде)?',a:['100','1024','2048'],correct:1},{q:'4096 бит неше байт?',a:['512','4096','1024'],correct:0}],
+ [{q:'Unicode стандарты не үшін қажет?',a:['Көптеген тілдердің таңбаларын кодтау үшін','Тек кескін салу үшін','Дыбыс күшейту үшін'],correct:0},{q:'Монохромды ақ-қара кескіннің бір пикселін екі түспен кодтауға кемінде неше бит жеткілікті?',a:['1 бит','8 бит','16 бит'],correct:0},{q:'Стандартты ASCII кестесінде неше код мәні бар?',a:['64','128','1000'],correct:1}],
+ [{q:'1 бит арқылы қанша түрлі күйді көрсетуге болады?',a:['2','4','8'],correct:0},{q:'ASCII мен Unicode арасындағы негізгі айырма?',a:['Екеуі тек суреттерге қолданылады','Unicode әлдеқайда көп таңбаны қамтиды','ASCII барлық тіл таңбасын қамтиды'],correct:1},{q:'8 пиксельден тұратын қара-ақ кескінді 1 бит/пиксель тәсілімен сақтау үшін ең аз көлем?',a:['1 байт','8 байт','8 КБ'],correct:0}]
+];
+let quizIndex=0, quizScore=0, quizAnswered=false, quizTopic=7;
+const gradeSidebar=(active)=>`<aside class="catalog-side"><h3>Оқу бөлімдері</h3><a href="#/" ${active==='home'?'class="active"':''}><span class="mark">⌂</span>Басты бет</a><a href="#/grade/3" ${active==='3'?'class="active"':''}><span class="mark">🧠</span>3-сынып</a><a href="#/grade/7" ${active==='7'?'class="active"':''}><span class="mark">💻</span>7-сынып · Информатика</a><a href="#/grade/9" ${active==='9'?'class="active"':''}><span class="mark">🐍</span>9-сынып</a><a href="#/grade/books" ${active==='books'?'class="active"':''}><span class="mark">📚</span>Кітаптар</a><div class="helpnote">✨ <b>BilimTech</b><br>Тақырыпты таңдаңыз, материалды ашыңыз және өзіңізді шағын тапсырмамен тексеріңіз.</div></aside>`;
+function subjectHero(grade){let d=grades[grade];return `<section class="platform-head"><div><span class="kicker">✦ BilimTech · Оқу платформасы</span><h1>${esc(d.name)} · ${grade==='7'?'Информатика':esc(d.title)}</h1><p>Тақырыптарға өтіңіз, түсіндірме мен оқу материалдарын қараңыз және қысқа тапсырмалар арқылы біліміңізді тексеріңіз.</p></div><img src="assets/${esc(d.image)}" alt="Информатикаға арналған иллюстрация"></section>`}
+function hasLessonMaterials(i){const groups=MATERIALS['7-сынып']?.[i];return !!groups&&Object.values(groups).some(files=>Array.isArray(files)&&files.length>0)}
+function skillRow(i){const title=TOPICS[i-1], exp=EXPLANATIONS[i-1][0], available=hasLessonMaterials(i), practice=title.includes('Практикум');return `<article class="skill-row" data-skill-row data-title="${esc(title.toLowerCase())}" data-kind="${practice?'practice':'lesson'}" data-hasfile="${available?'yes':'no'}"><div class="skill-name"><span class="skill-num">${i}</span><span><strong>${esc(title)}</strong><small>7-сынып · ${i}-тақырып</small></span></div><div class="skill-hint">${esc(exp)}</div><div><span class="skill-pill ${available?'ready':''}">${available?'✓ Материалдары бар':practice?'Практикалық жұмыс':'Қысқа жаттығу'}</span></div><a class="skill-open" href="#/lesson/7/${i}">${available?'Материалдарды ашу':'Тақырыпты ашу'} ↗</a></article>`}
+function skillsList(){return `<div class="skill-topbar"><span class="count-tag">8 тақырып · 7-сынып</span><input class="skill-search" id="skillFilter" placeholder="Тақырып ішінен іздеу..." aria-label="Тақырып іздеу"></div><div class="filterbar" aria-label="Тақырып сүзгісі"><button type="button" class="active" data-skill-filter="all">Барлығы</button><button type="button" data-skill-filter="lesson">Теория</button><button type="button" data-skill-filter="practice">Практикум</button><button type="button" data-skill-filter="ready">Материалдары бар</button></div><div class="skill-group" data-skill-group><h3>Ақпарат және қауіпсіздік</h3><div class="skill-table-head"><span>Тақырып атауы</span><span>Түсіндірме</span><span>Материал / Жаттығу</span><span>Сабақты ашу</span></div>${[1,2,3,4].map(skillRow).join('')}</div><div class="skill-group" data-skill-group><h3>Ақпаратты өлшеу және кодтау</h3><div class="skill-table-head"><span>Тақырып атауы</span><span>Түсіндірме</span><span>Материал / Жаттығу</span><span>Сабақты ашу</span></div>${[5,6,7,8].map(skillRow).join('')}</div><div class="training-banner"><span class="emoji">🧩</span><div><strong>Оқы → Орында → Тексер</strong><p>Тақырыпты ашқаннан кейін қысқа жаттығуға жауап беруге болады. Нәтиже тек осы бетте көрсетіледі; оқушы деректері жиналмайды.</p></div></div></div>`}
+function filterSkills(){const q=(document.getElementById('skillFilter')?.value||'').toLocaleLowerCase('kk').trim();const mode=document.querySelector('[data-skill-filter].active')?.dataset.skillFilter||'all';document.querySelectorAll('[data-skill-row]').forEach(row=>{const ok=row.dataset.title.includes(q)&&(mode==='all'||(mode==='ready'?row.dataset.hasfile==='yes':row.dataset.kind===mode));row.hidden=!ok;row.style.display=ok?'':'none'});document.querySelectorAll('[data-skill-group]').forEach(group=>{group.hidden=![...group.querySelectorAll('[data-skill-row]')].some(row=>!row.hidden);group.style.display=group.hidden?'none':''})}
+function quizMarkup(i){quizTopic=i;quizIndex=0;quizScore=0;quizAnswered=false;return `<section class="lesson-quiz" id="practice"><div class="quiz-head"><h3>🧠 Өзіңді тексер</h3><span>3 шағын сұрақ · Автоматты тексеру</span></div><div class="quiz-inner" id="quizContent"></div></section>`}
+function paintQuiz(){const area=document.getElementById('quizContent');if(!area)return;const qs=QUIZZES[quizTopic-1];if(quizIndex>=qs.length){area.innerHTML=`<div style="text-align:center;padding:16px"><div style="font-size:42px">🎯</div><h3 style="color:#0c2e74;font-size:22px">Нәтиже: ${quizScore} / ${qs.length}</h3><p style="color:#597494;font-size:13px">Бұл жаттығу өз біліміңізді тексеруге арналған.</p><button class="quiz-next" type="button" data-restart-quiz>Қайта орындау ↻</button></div>`;return}
+const q=qs[quizIndex];area.innerHTML=`<div class="quiz-progress">${quizIndex+1} / ${qs.length}-сұрақ</div><p class="quiz-question">${esc(q.q)}</p><div class="quiz-answers">${q.a.map((a,j)=>`<button class="quiz-answer" type="button" data-answer="${j}"><span style="font-size:15px;color:#2a8ad7">${String.fromCharCode(65+j)}.</span>${esc(a)}</button>`).join('')}</div><div class="quiz-actions"><span class="quiz-feedback" id="quizFeedback" aria-live="polite">Жауапты таңдаңыз.</span><button type="button" class="quiz-next" data-next-quiz disabled>${quizIndex===qs.length-1?'Нәтижені көру':'Келесі сұрақ →'}</button></div>`}
+function answerQuiz(v){if(quizAnswered)return;quizAnswered=true;const correct=QUIZZES[quizTopic-1][quizIndex].correct;if(v===correct)quizScore++;document.querySelectorAll('[data-answer]').forEach(el=>{let ix=Number(el.dataset.answer);el.disabled=true;if(ix===correct)el.classList.add('correct');else if(ix===v)el.classList.add('wrong')});document.getElementById('quizFeedback').textContent=v===correct?'✓ Дұрыс жауап!':'Дұрыс жауап жасыл түспен көрсетілді.';document.querySelector('[data-next-quiz]').disabled=false}
+
+function pageGrade(grade){const g=grades[grade];if(!g)return pageHome();if(grade==='books')return pageBooks();if(grade==='7')return `<main class="max page">${crumbs([['7-сынып','#/grade/7']])}${subjectHero('7')}<div class="catalog-layout">${gradeSidebar('7')}<section class="catalog-main"><h2>Информатика — сабақтар мен дағдылар</h2><p class="subtext">Әр тақырыпқа қысқаша түсіндірме, оқу ұсынысы, жаттығу және материалға өту батырмасы берілген.</p>${skillsList()}</section></div></main>`;return `<main class="max page">${crumbs([[g.name,'#/grade/'+grade]])}${subjectHero(grade)}<div class="catalog-layout">${gradeSidebar(grade)}<section class="catalog-main"><h2>${esc(g.name)} — сабақтар мен тақырыптар</h2><p class="subtext">8 тақырып. Әр сабаққа жеке өтуге болады, ал материалдар дайын болған сайын қосылады.</p>${gradeSkillsList(grade)}</section></div></main>`}
+
+
+const GRADE3_TOPICS = [
+ '1-бөлім. «Компьютер қалай жұмыс істейді» (ортақ тақырып: «Табиғат–менің үйім») Интернет желісінде қауіпсіз байланыс',
+ 'Компьютердің ішкі құрылғылары',
+ 'Программалық жабдықтама',
+ 'Программалық жабдықтама',
+ '2-бөлім. «Жоба жасау» (ортақ тақырып: «Менің Отаным – Қазақстан») Жоба идеясы',
+ 'Жобаны рәсімдеу',
+ '«Менің Отаным – Қазақстан» тақырыбында жобалық жұмыс (аралық бақылау/жобалық жұмыс 14б)',
+ 'Жобаны рәсімдеу'
+];
+const GRADE9_TOPICS = [
+ 'Жасанды интеллектіні қолданудың әлеуметтік және этикалық аспектілері',
+ 'Жасанды интеллектіні қолданудың әлеуметтік және этикалық аспектілері',
+ 'Компьютердің IP-мекенжайы. Ішкі желі маскасы',
+ 'Компьютердің IP-мекенжайы. Ішкі желі маскасы',
+ 'Домендік атаулар жүйесі және ақпаратты тасымалдау хаттамалары',
+ 'Желінің өткізу қабілетін анықтау',
+ 'Желінің өткізу қабілетін анықтау БЖБ 1',
+ 'Желінің өткізу қабілетін анықтау Практикум'
+];
+const GRADE_INFO = {
+ '3': [
+  ['Интернеттегі қауіпсіз байланыс және жеке ақпаратты қорғау ережелері.', 'Сенімді сайттарды танып, құпиясөзді ешкімге бермеу туралы талқылаңыз.'],
+  ['Компьютердің ішкі құрылғыларының атауы мен қызметін таныстыру.', 'Процессор, жедел жад және ақпарат сақтайтын құрылғыны ажыратып көріңіз.'],
+  ['Компьютердегі программалардың қандай міндет атқаратынын түсіндіру.', 'Өзіңіз күнделікті қолданатын үш программаны атаңыз.'],
+  ['Программалық жабдықтама тақырыбын мысалдар арқылы бекіту.', 'Операциялық жүйе мен қолданбалы программаны салыстырыңыз.'],
+  ['«Менің Отаным – Қазақстан» тақырыбына шағын жоба идеясын таңдау.', 'Жобаның мақсаты мен негізгі идеясын бір-екі сөйлеммен тұжырымдаңыз.'],
+  ['Жоба жұмысын реттеп, мәтін мен суреттерді ұқыпты орналастыру.', 'Жобаның атауын, мақсатын және қолданған дереккөздерін тексеріңіз.'],
+  ['Қазақстан тақырыбындағы жасалған жобаны таныстыру және бағалау.', 'Жұмысыңызды түсіндіріп, не үйренгеніңізді айтып беріңіз.'],
+  ['Жоба нәтижесін жүйелеу, безендіру және аяқтау.', 'Тақырыптың түсінікті жазылғанын және суреттердің орнын тексеріңіз.']
+ ],
+ '9': [
+  ['Жасанды интеллектіні жауапкершілікпен қолдану, жеке деректер және әділдік мәселелері.', 'ЖИ ұсынған ақпаратты тексеру және деректерді қорғау туралы мысалдар ойластырыңыз.'],
+  ['Жасанды интеллектіні пайдаланудың әлеуметтік және этикалық салдарын талдау.', 'Авторлық құқық, қате нәтиже және алгоритм әділдігі туралы пікір таластырыңыз.'],
+  ['IP-мекенжай мен желі маскасының желідегі қызметін түсіну.', 'IP-мекенжайдың құрылымына назар аударып, желі мен құрылғы бөлігін ажыратыңыз.'],
+  ['IP-мекенжай мен ішкі желі маскасын есептерде қолдану.', 'Бір желіге жататын екі құрылғыны анықтау тәсілін талдаңыз.'],
+  ['DNS жүйесінің, HTTP және HTTPS сияқты хаттамалардың қызметін түсіну.', 'Домендік атау қалай IP-мекенжайға сәйкестенетінін сызбамен көрсетіңіз.'],
+  ['Желінің өткізу қабілеті мен деректерді тасымалдау жылдамдығын салыстыру.', 'Деректер көлемі, жылдамдық және уақыт арасындағы байланысты зерттеңіз.'],
+  ['Желінің өткізу қабілеті тақырыбы бойынша бөлімдік жиынтық бағалау.', 'Өлшем бірліктері мен негізгі формулаларды қайталаңыз.'],
+  ['Желінің өткізу қабілетін есептеуге арналған практикалық тапсырмалар.', 'Формула бойынша шамаларды тауып, жауаптың өлшем бірлігін жазыңыз.']
+ ]
+};
+const topicsForGrade=grade=>grade==='3'?GRADE3_TOPICS:grade==='9'?GRADE9_TOPICS:TOPICS;
+const infoForGrade=(grade,i)=>grade==='7'?EXPLANATIONS[i-1]:(GRADE_INFO[grade]||[])[i-1]||['Сабақтың мазмұны.', 'Тақырыпты қайталаңыз.'];
+const availableForGrade=(grade,i)=>{const data=MATERIALS[grade+'-сынып']?.[i];return !!data&&Object.values(data).some(files=>Array.isArray(files)&&files.length>0)};
+function gradeTopicRow(grade,i){
+ const title=topicsForGrade(grade)[i-1],info=infoForGrade(grade,i),isReady=availableForGrade(grade,i);
+ const practice=/Практикум|БЖБ|жобалық жұмыс|рәсімдеу/i.test(title);
+ return `<article class="skill-row" data-skill-row data-title="${esc(title.toLocaleLowerCase('kk'))}" data-kind="${practice?'practice':'lesson'}" data-hasfile="${isReady?'yes':'no'}">
+   <div class="skill-name"><span class="skill-num">${i}</span><span><strong>${esc(title)}</strong><small>${grade}-сынып · ${i}-тақырып</small></span></div>
+   <div class="skill-hint">${esc(info[0])}</div>
+   <div><span class="skill-pill ${isReady?'ready':''}">${isReady?'✓ Материалдары бар':practice?'Практикум / жұмыс':'Сабақ тақырыбы'}</span></div>
+   <a class="skill-open" href="#/lesson/${grade}/${i}">${isReady?'Материалдарды ашу ↗':'Сабақты ашу ↗'}</a>
+ </article>`;
+}
+function gradeSkillsList(grade){
+ const a=topicsForGrade(grade), is3=grade==='3';
+ const sections=is3?[['«Компьютер қалай жұмыс істейді»',[1,2,3,4]],['«Жоба жасау»',[5,6,7,8]]]:[['Жасанды интеллект және желілер',[1,2,3,4]],['Желілік технологиялар және практикум',[5,6,7,8]]];
+ return `<div class="skill-topbar"><span class="count-tag">8 тақырып · ${grade}-сынып</span><input class="skill-search" id="skillFilter" placeholder="Тақырып ішінен іздеу..." aria-label="Тақырып іздеу"></div>
+   <div class="filterbar" aria-label="Тақырып сүзгісі"><button type="button" class="active" data-skill-filter="all">Барлығы</button><button type="button" data-skill-filter="lesson">Теория</button><button type="button" data-skill-filter="practice">Практикум / жоба</button></div>
+   ${sections.map(([name,indices])=>`<div class="skill-group" data-skill-group><h3>${esc(name)}</h3><div class="skill-table-head"><span>Тақырып атауы</span><span>Түсіндірме</span><span>Мәртебе</span><span>Сабақты ашу</span></div>${indices.map(i=>gradeTopicRow(grade,i)).join('')}</div>`).join('')}
+   <div class="training-banner"><span class="emoji">💡</span><div><strong>BilimTech · ${grade}-сыныптың 8 сабағы</strong><p>Барлық тақырыпты жеке ашуға болады. Сабақ материалдары дайын болған сайын тиісті тақырыпқа қосылады. ${grade==='9'?'1-сабақтың слайдтары, ҚМЖ-сы және видеолары дайын.':'Материалдар дайын болған сайын осы бөлімге қосылады.'}</p></div></div>`;
+}
+function pageOtherLesson(grade,i){
+ if(grade==='9'&&i===1)return page9Lesson();
+ const t=topicsForGrade(grade),title=t?.[i-1],g=grades[grade]; if(!title||!g)return pageGrade(grade);
+ const info=infoForGrade(grade,i);
+ return `<main class="max page">${crumbs([[g.name,'#/grade/'+grade],[i+'-тақырып','#/lesson/'+grade+'/'+i]])}
+ <section class="platform-head" style="min-height:176px"><div><span class="kicker">✦ ${grade}-сынып · ${i} / 8 сабақ</span><h1 style="font-size:clamp(22px,2.5vw,31px)">${esc(title)}</h1><p>Сабақтың тақырыбымен танысыңыз және оқу мақсатына назар аударыңыз.</p></div><img src="assets/${esc(g.image)}" alt="${esc(g.name)} информатика иллюстрациясы"></section>
+ <div class="catalog-layout">${gradeSidebar(grade)}<section class="catalog-main">
+ <div class="backline"><a href="#/grade/${grade}">← ${grade}-сыныптың 8 тақырыбы</a><span style="color:#7594c1;font-size:12px">${i} / 8</span></div>
+ <div class="lesson-info"><div class="lesson-details"><h3>📘 Сабақ мазмұны</h3><p>${esc(info[0])}</p></div><div class="lesson-details tips"><h3>💡 Тапсырмаға дайындық</h3><p>${esc(info[1])}</p></div></div>
+ <div class="empty"><span class="ico">📂</span><p><b>Оқу материалы әзірге қосылмаған.</b></p><p>Слайд, ҚМЖ, жұмыс парағы немесе видео дайын болғанда осы тақырыптың ішінен ашылады.</p></div>
+ <nav class="lesson-step-nav" aria-label="Сабақтар арасында ауысу">${i>1?`<a class="step-link" href="#/lesson/${grade}/${i-1}">← ${i-1}-сабақ</a>`:'<span></span>'}<a class="step-link" href="#/grade/${grade}">Барлық 8 тақырып</a>${i<8?`<a class="step-link next" href="#/lesson/${grade}/${i+1}">${i+1}-сабақ →</a>`:'<span></span>'}</nav>
+ </section></div></main>`;
+}
+
+
+function fileSection9(k){
+ const [type,icon,style,note]=matCfg[k],files=MATERIALS['9-сынып'][1][type]||[];
+ const buttons=files.map((f,j)=>{const id='material-9-1-'+k+'-'+j;
+ const thumb=f.thumb?`<img src="${path(f.thumb)}" alt="${esc(f.title)} бейне көрінісі" loading="lazy">`:f.slides?.length?`<img src="${path(f.slides[0])}" alt="${esc(f.title)} бірінші беті" loading="lazy">`:'📄';
+ return `<button class="resource ${type==='ЖИ видеолар'?'video':''}" data-file="${id}"><div class="thumb">${thumb}</div><strong>${esc(f.title)}</strong><div class="hint">▶ Сайт ішінде ашу</div></button>`}).join('');
+ return `<section class="section-block" id="section-${k}"><div class="section-label ${style}">${icon} ${type}<small>${files.length} материал · ${note}</small></div><div class="section-inner">${buttons}</div></section>`;
+}
+function page9Lesson(){
+ const title=GRADE9_TOPICS[0],info=GRADE_INFO['9'][0];
+ return `<main class="max page">${crumbs([['9-сынып','#/grade/9'],['1-тақырып','#/lesson/9/1']])}
+ <section class="platform-head" style="min-height:175px"><div><span class="kicker">9-сынып · 1 / 8 сабақ · 9.4.2.1</span><h1 style="font-size:clamp(24px,2.4vw,32px)">${esc(title)}</h1><p>Жасанды интеллектіні жауапкершілік, әділдік және ашықтық тұрғысынан талдау.</p></div><img src="assets/grade9.webp" alt="Жасанды интеллект туралы иллюстрация"></section>
+ <div class="catalog-layout">${gradeSidebar('9')}<section class="catalog-main">
+ <div class="backline"><a href="#/grade/9">← 9-сыныптың барлық тақырыптары</a><span style="color:#7594c1;font-size:12px">1 / 8</span></div>
+ <div class="lesson-info"><div class="lesson-details"><h3>📖 Тақырып туралы</h3><p>${esc(info[0])}</p></div><div class="lesson-details tips"><h3>💡 Оқуға ұсыныс</h3><p>Презентациядағы 9 және 10-слайдтың Gemini тапсырмаларына өтіп, жауапкершілік, әділдік және ашықтық туралы ойыңызды жазыңыз.</p></div></div>
+ <div class="material-shortcuts">${matCfg.map((m,k)=>`<button type="button" data-scroll="section-${k}" class="shortcut ${m[2]}"><span class="ico">${m[1]}</span><span><b>${m[0]}</b><small>${k===0?'13 слайд · 2 сілтеме':k===1?'3 бет':k===2?'1 бет':'7 видео'}</small></span></button>`).join('')}</div>
+ ${matCfg.map((_,k)=>fileSection9(k)).join('')}
+ <nav class="lesson-step-nav" aria-label="Сабақтар арасында ауысу"><span></span><a class="step-link" href="#/grade/9">Барлық 8 тақырып</a><a class="step-link next" href="#/lesson/9/2">2-сабақ →</a></nav>
+ </section></div></main>`;
+}
+
+const matCfg=[['Слайд','📊','sc-blue','Слайдтар · сілтемелер'],['ҚМЖ','📝','sc-green','Сабақ жоспары'],['Жұмыс парағы','📋','sc-orange','Қарау'],['ЖИ видеолар','🎬','sc-pink','Видеосабақтар']];
+const extraCfg=['Интерактивті тапсырмалар','🧩','sc-blue','Онлайн жаттығу'];
+const lessonCfg=n=>n===1?[...matCfg,extraCfg]:n===2?[...matCfg,extraCfg,['Сергіту сәті','🧠','sc-green','Пирамида · ойын']]:matCfg;
+function fileSection(i,lesson){const [type,icon,style,note]=lessonCfg(lesson)[i];const files=MATERIALS['7-сынып'][lesson]?.[type]||[];let buttons=files.map((f,j)=>{const id='material-'+lesson+'-'+i+'-'+j;let thumb=f.thumb?`<img src="${path(f.thumb)}" alt="${esc(f.title)} видеоның көрінісі" loading="lazy">`:f.slides?.length?`<img src="${path(f.slides[0])}" alt="${esc(f.title)} бірінші слайды" loading="lazy">`:type==='ҚМЖ'?'📄':'🧩';return `<button class="resource ${type==='ЖИ видеолар'?'video':''}" data-file="${id}"><div class="thumb">${thumb}</div><strong>${esc(f.title)}</strong><div class="hint">▶ Сайт ішінде ашу</div></button>`}).join('');return `<section class="section-block" id="section-${i}"><div class="section-label ${style}">${icon} ${type}<small>${files.length===1?'1 файл':files.length+' материал'} · ${note}</small></div><div class="section-inner">${buttons}</div></section>`}
+function pageLesson(i){let title=TOPICS[i-1];if(!title)return pageGrade('7');const material=hasLessonMaterials(i);let x=EXPLANATIONS[i-1];let cfg=lessonCfg(i);return `<main class="max page">${crumbs([['7-сынып','#/grade/7'],[i+'-тақырып','#/lesson/7/'+i]])}<div class="platform-head" style="min-height:175px"><div><span class="kicker">7-сынып · ${i} / 8 сабақ</span><h1 style="font-size:clamp(24px,2.4vw,32px)">${esc(title)}</h1><p>Оқыңыз, қажет материалды ашыңыз, білімді тексеріңіз.</p></div><img src="assets/grade7.webp" alt="Информатика"></div><div class="catalog-layout">${gradeSidebar('7')}<section class="catalog-main"><div class="backline"><a href="#/grade/7">← 7-сыныптың барлық тақырыптары</a><span style="color:#7594c1;font-size:12px">${i} / 8</span></div><div class="lesson-info"><div class="lesson-details"><h3>📖 Тақырып туралы</h3><p>${esc(x[0])}</p></div><div class="lesson-details tips"><h3>💡 Оқуға ұсыныс</h3><p>${esc(x[1])}</p></div></div>${material?`<div class="material-shortcuts">${cfg.map((m,j)=>`<button type="button" data-scroll="section-${j}" class="shortcut ${m[2]}"><span class="ico">${m[1]}</span><span><b>${m[0]}</b><small>${m[3]}</small></span></button>`).join('')}</div>${cfg.map((_,j)=>fileSection(j,i)).join('')}`:`<div class="empty" style="padding:22px"><span class="ico">📂</span><p>Бұл сабаққа жеке файлдар әлі қосылған жоқ. Төмендегі шағын тапсырманы орындауға болады.</p></div>`}${quizMarkup(i)}<a href="#/grade/7" style="color:#066fe6;font-weight:850;text-decoration:none;font-size:13px">← Тақырыптар тізіміне оралу</a></section></div></main>`}
+
+
+// Library section: read the original author's work in the browser.
+const AUTHOR_BOOK = {
+  title: 'Python негізінде жеке оқу траекториясын ұсынатын AI-жүйе',
+  author: 'Рабаева Айнура Бахытовна',
+  descriptor: 'Авторлық бағдарлама',
+  pages: 194,
+  year: 2026,
+  pdf: 'materials/books/Rabaeva_AI_Python_zheke_oqu_traektoriyasy_2026.pdf',
+  cover: 'materials/books/Rabaeva_AI_muqaba.png'
+};
+function pageBooks(){
+ const b=AUTHOR_BOOK;
+ return `<main class="max page">${crumbs([['Кітаптар','#/grade/books']])}
+  <section class="book-hero"><div><span class="kicker">📚 BilimTech электрондық кітапханасы</span><h1>Кітаптар және авторлық бағдарламалар</h1><p>Информатика мен бағдарламалауға арналған оқу-әдістемелік еңбектер. Құжатты сайт ішінде оқуға болады.</p></div><span aria-hidden="true" class="book-hero-icon">📚</span></section>
+  <section class="book-grid" aria-label="Электрондық кітаптар"><article class="book-card">
+  <a href="#/book/python-ai-rabaeva" aria-label="${esc(b.title)} — оқу"><img src="${path(b.cover)}" alt="Авторлық бағдарламаның бірінші беті — мұқаба" loading="lazy"></a>
+  <div><span class="kicker">📘 АВТОРЛЫҚ БАҒДАРЛАМА</span><h2>${esc(b.title)}</h2>
+  <div class="book-author">Автор: ${esc(b.author)}</div>
+  <div class="book-tags"><span>💻 Python</span><span>🤖 Жасанды интеллект</span><span>🎓 7-сынып</span><span>📄 ${b.pages} бет</span><span>📅 ${b.year}</span></div>
+  <p>Python тілі, айнымалылар, шартты операторлар, циклдер, функциялар және оқушы нәтижесін талдайтын жеке оқу жүйесін құрастыру.</p>
+  <div class="book-actions"><a class="book-primary" href="#/book/python-ai-rabaeva">📖 Сайт ішінде оқу →</a><a class="book-secondary" href="${path(b.pdf)}" target="_blank" rel="noopener noreferrer">↗ PDF толық ашу</a></div>
+  </div></article></section></main>`;
+}
+function pageBook(id){
+ if(id!=='python-ai-rabaeva')return pageBooks();
+ const b=AUTHOR_BOOK;
+ return `<main class="max page">${crumbs([['Кітаптар','#/grade/books'],['Авторлық бағдарлама','#/book/python-ai-rabaeva']])}
+  <div class="book-reader-top"><a class="book-secondary" style="display:inline-flex;padding:10px 15px;background:#eaf3ff;border-radius:10px;color:#0c61b9;text-decoration:none;font-weight:800" href="#/grade/books">← Кітаптарға оралу</a>
+  <div class="book-actions" style="margin:0"><a class="book-secondary" href="${path(b.pdf)}" target="_blank" rel="noopener noreferrer">↗ Жаңа терезеде ашу</a><a class="book-primary" href="${path(b.pdf)}" download>↓ PDF жүктеу</a></div></div>
+  <section class="panel book-reader-meta"><span class="kicker">📘 Авторлық бағдарлама · ${b.pages} бет · ${b.year}</span>
+  <h1 class="book-reader-title">${esc(b.title)}</h1><p>Автор: <strong>${esc(b.author)}</strong></p>
+  <iframe class="book-reader-frame" title="${esc(b.title)} — толық PDF құжаты" loading="eager" src="${path(b.pdf)}#toolbar=1&navpanes=0"></iframe>
+  <p class="book-reader-note">PDF браузер ішінде ашылады. Егер браузер PDF қарауды қолдамаса, «Жаңа терезеде ашу» батырмасын пайдаланыңыз.</p>
+  </section></main>`;
+}
+
+function pageDocuments(){return `<main class="max page"><section class="panel">${crumbs([['Құжаттар','#/documents']])}<div class="page-title"><span class="symbol">📄</span><h1>Оқу құжаттары</h1></div><p class="page-sub">Қазір 7-сыныптың 1, 2, 3, 7-тақырыптары және 9-сыныптың 1-тақырыбы материалдармен толықтырылған.</p><a class="primary" href="#/lesson/7/1">1-тақырыпқа өту →</a>　<a class="primary" href="#/lesson/7/2">2-тақырыпқа өту →</a>　<a class="primary" href="#/lesson/7/3">3-тақырыпқа өту →</a>　<a class="primary" href="#/lesson/7/7">7-тақырыпқа өту →</a>　<a class="primary" href="#/lesson/9/1">9-сынып · 1-сабақ →</a></section></main>`}
+function pageContact(){return `<main class="max page"><section class="panel">${crumbs([['Байланыс','#/contact']])}<div class="page-title"><span class="symbol">✉️</span><h1>Байланыс</h1></div><p class="page-sub">BilimTech · Білімге бастар цифрлық қадам. Сайттың байланыс деректері әзірге енгізілген жоқ.</p></section></main>`}
+function render(){let hash=decodeURIComponent(location.hash||'#/');let route=hash.split('?')[0].replace(/^#\/?/,'').split('/').filter(Boolean);let page=route[0]||'home';let area=$('app');if(['home','collections'].includes(page)){area.innerHTML=pageHome();if(page==='collections')setTimeout(()=>document.querySelector('#collections')?.scrollIntoView(),0)}else if(page==='grade'){area.innerHTML=pageGrade(route[1])}else if(page==='lesson'&&['3','7','9'].includes(route[1])){area.innerHTML=route[1]==='7'?pageLesson(Number(route[2])):pageOtherLesson(route[1],Number(route[2]))}else if(page==='book'){area.innerHTML=pageBook(route[1])}else if(page==='documents'){area.innerHTML=pageDocuments()}else if(page==='contact'){area.innerHTML=pageContact()}else{area.innerHTML=pageHome()}
+ document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===(page==='home'?'home':page==='book'?'books':page==='grade'&&route[1]==='books'?'books':page==='grade'||page==='lesson'?'collections':page)));document.title=(page==='lesson'?(topicsForGrade(route[1])?.[Number(route[2])-1]||'Сабақ')+' — ':'')+'BilimTech';if(page!=='collections')window.scrollTo(0,0)}
+function fileFromId(id){if(id.startsWith('material-9-1-')){let p=id.split('-');return MATERIALS['9-сынып'][1][matCfg[Number(p[3])][0]][Number(p[4])]}let [_,lesson,i,j]=id.split('-');let group=lessonCfg(Number(lesson))[Number(i)][0];return MATERIALS['7-сынып'][Number(lesson)][group][Number(j)]}
+function openPreview(f){const body=$('modalBody');body.replaceChildren();$('modalTitle').textContent=f.title;const url=path(f.path);$('downloadFile').href=url;$('overlay').classList.add('open');document.body.style.overflow='hidden';if(f.slides&&f.slides.length){let i=0,img=el('img','slide-img');img.alt=f.title;img.title='Сілтемесі бар слайдты басқанда сыртқы ресурс ашылады';const nav=el('div','slide-tools'),prev=el('button','','← Алдыңғы'),next=el('button','','Келесі →'),label=el('strong'),links=el('div','slide-links'),players=el('div','slide-media');function update(){img.src=path(f.slides[i]);label.textContent=(i+1)+' / '+f.slides.length+' слайд';prev.disabled=i===0;next.disabled=i===f.slides.length-1;links.replaceChildren();players.replaceChildren();let uris=f.slideLinks?.[i+1]||[];img.style.cursor=(uris.length||(f.slideVideos?.[i+1]||[]).length)?'pointer':'default';img.onclick=uris.length?()=>window.open(uris[0],'_blank','noopener,noreferrer'):(f.slideVideos?.[i+1]||[]).length?()=>links.querySelector('button')?.click():null;uris.forEach((u,j)=>{let local=!/^https?:\/\//i.test(u);if(local&&!u.startsWith('materials/'))return;let a=el('a','',local?'🧩 Топтық интерактивті ойынды ашу ↗':'🔗 '+(j?'Қосымша сілтеме '+(j+1):'Слайдтағы сілтемені ашу ↗'));a.href=local?path(u):u;a.target='_blank';a.rel='noopener noreferrer';a.title=u;links.append(a)});(f.slideVideos?.[i+1]||[]).forEach((src,j)=>{let isAudio=/\.(m4a|mp3|wav)$/i.test(src);let b=el('button','',isAudio?'🔊 Слайдтағы дыбысты тыңдау':'▶ Слайдтағы '+(j+1)+'-видеоны ойнату');b.type='button';b.onclick=()=>{players.querySelectorAll('video').forEach(v=>v.pause());players.replaceChildren();let video=el(isAudio?'audio':'video');video.controls=true;video.playsInline=true;video.preload='metadata';video.src=path(src);video.style.maxHeight='240px';players.append(video);video.play().catch(()=>{});};links.append(b)})}prev.onclick=()=>{if(i>0){i--;update()}};next.onclick=()=>{if(i<f.slides.length-1){i++;update()}};nav.append(prev,label,next);body.append(img,nav,links,players);update();}
+ else if(/\.(pdf|html)$/i.test(f.path)){let iframe=el('iframe');iframe.title=f.title;iframe.src=/\.pdf$/i.test(f.path)?url+'#toolbar=1':url;body.append(iframe)}
+ else if(/\.mp4$/i.test(f.path)){let video=el('video');video.controls=true;video.playsInline=true;video.preload='metadata';video.src=url;body.append(video)}else body.textContent='Бұл материалды сайтта көрсету мүмкін емес.';}
+function closeModal(){$('modalBody').querySelectorAll('video,audio').forEach(v=>v.pause());$('overlay').classList.remove('open');$('modalBody').replaceChildren();document.body.style.overflow='';}
+document.addEventListener('click',e=>{const filter=e.target.closest('[data-skill-filter]');if(filter){document.querySelectorAll('[data-skill-filter]').forEach(b=>b.classList.toggle('active',b===filter));filterSkills()}const answer=e.target.closest('[data-answer]');if(answer)answerQuiz(Number(answer.dataset.answer));if(e.target.closest('[data-next-quiz]')){quizIndex++;quizAnswered=false;paintQuiz()}if(e.target.closest('[data-restart-quiz]')){quizIndex=0;quizScore=0;quizAnswered=false;paintQuiz()}});document.addEventListener('input',e=>{if(e.target.id==='skillFilter')filterSkills()});
+document.addEventListener('click',e=>{let s=e.target.closest('[data-scroll]');if(s){document.getElementById(s.dataset.scroll)?.scrollIntoView({behavior:'smooth',block:'start'})}let b=e.target.closest('[data-file]');if(b){openPreview(fileFromId(b.dataset.file))}});$('closeModal').onclick=closeModal;$('overlay').onclick=e=>{if(e.target===$('overlay'))closeModal()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});window.addEventListener('hashchange',()=>{render();if(location.hash.startsWith('#/lesson/7/'))paintQuiz()});
+$('search').addEventListener('input',function(){let v=this.value.trim().toLocaleLowerCase('kk');let box=$('searchResults');if(!v){box.classList.add('hide');return}let hits=['3','7','9'].flatMap(g=>topicsForGrade(g).map((title,i)=>({title,i,g}))).filter(x=>x.title.toLocaleLowerCase('kk').includes(v)).slice(0,14);box.innerHTML=hits.length?hits.map(x=>`<a href="#/lesson/${x.g}/${x.i+1}">${x.g}-сынып · ${x.i+1}. ${esc(x.title)}</a>`).join(''):'<p>Тақырып табылмады</p>';box.classList.remove('hide')});$('search').addEventListener('keydown',e=>{if(e.key==='Enter'){let a=$('searchResults').querySelector('a');if(a){location.hash=a.getAttribute('href');$('searchResults').classList.add('hide');$('search').blur()}}});document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))$('searchResults').classList.add('hide')});$('searchResults').addEventListener('click',()=>{$('searchResults').classList.add('hide');$('search').value=''})
+render();if(location.hash.startsWith('#/lesson/7/'))paintQuiz();
+</script><script src="network-background.js" defer></script></body></html>
