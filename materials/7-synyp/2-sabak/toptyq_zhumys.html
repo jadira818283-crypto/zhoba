@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-трафикті есептеу | Интерактивті Топтық Ойын</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Custom Styles for Smartboard Accessibility -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Nunito:wght@600;800;900&display=swap');
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            touch-action: manipulation;
+            user-select: none;
+        }
+
+        .heading-font {
+            font-family: 'Comfortaa', cursive;
+        }
+
+        /* Glassmorphism styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-bounce:active {
+            transform: scale(0.95);
+        }
+
+        /* Custom glow effects for smartboard visibility */
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+        }
+        .glow-pink {
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.6);
+        }
+        .glow-amber {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
+        }
+
+        /* Scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Top Navigation & Scoreboard Header -->
+    <header class="p-3 sm:p-4 bg-slate-900/80 backdrop-blur-md border-b border-slate-700/60 sticky top-0 z-50">
+        <div class="max-w-7xl mx-mx-auto flex flex-wrap justify-between items-center gap-3">
+            
+            <!-- Title & Mode Selection -->
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-cyan-500 to-blue-600 p-3 rounded-2xl shadow-lg flex items-center justify-center">
+                    <i class="fa-solid fa-wifi text-2xl text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black heading-font text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-200 to-indigo-200">
+                        Интернет-Трафик Ойыны
+                    </h1>
+                    <p class="text-xs text-slate-300">Интерактивті тақтаға арналған топтық тапсырма</p>
+                </div>
+            </div>
+
+            <!-- Team Scoreboard -->
+            <div class="flex items-center gap-4 sm:gap-6 bg-slate-800/80 px-4 py-2 rounded-2xl border border-slate-700">
+                <!-- Team 1 Score -->
+                <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded-full bg-cyan-400 glow-blue"></div>
+                    <span class="font-bold text-sm sm:text-base text-cyan-200">1-Топ:</span>
+                    <span id="score-team1" class="text-2xl font-black text-cyan-400 min-w-[30px] text-center">0</span>
+                    <span class="text-xs text-slate-400">ұпай</span>
+                </div>
+
+                <div class="h-8 w-[2px] bg-slate-700"></div>
+
+                <!-- Team 2 Score -->
+                <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded-full bg-pink-400 glow-pink"></div>
+                    <span class="font-bold text-sm sm:text-base text-pink-200">2-Топ:</span>
+                    <span id="score-team2" class="text-2xl font-black text-pink-400 min-w-[30px] text-center">0</span>
+                    <span class="text-xs text-slate-400">ұпай</span>
+                </div>
+
+                <!-- Reset Score Button -->
+                <button onclick="resetScores()" title="Ұпайларды қайта ысыру" class="ml-2 text-slate-400 hover:text-white transition-colors p-1">
+                    <i class="fa-solid fa-rotate-right text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Sound toggle & Fullscreen buttons -->
+            <div class="flex items-center gap-2">
+                <button id="sound-btn" onclick="toggleSound()" class="p-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl border border-slate-700 text-amber-400 transition-all">
+                    <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
+                <button onclick="toggleModal('modal-rules')" class="px-3 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-sm font-bold shadow-lg transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-question"></i> Ереже
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <main class="max-w-7xl mx-auto w-full px-3 sm:px-6 py-4 flex-grow flex flex-col gap-5">
+        <div class="flex justify-center border-b border-slate-700/80 pb-2">
+            <nav class="flex gap-2 sm:gap-4 bg-slate-900/60 p-1.5 rounded-2xl border border-slate-800">
+                <button id="tab-btn-main" onclick="switchTab('main')" class="tab-active px-4 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 bg-indigo-600 text-white shadow-lg">
+                    <i class="fa-solid fa-clipboard-check"></i> 1. Негізгі Жағдаяттық Тапсырма
+                </button>
+                <button id="tab-btn-battle" onclick="switchTab('battle')" class="px-4 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800">
+                    <i class="fa-solid fa-gamepad"></i> 2. «Трафик-Баттл» Жарысы
+                </button>
+                <button id="tab-btn-calc" onclick="switchTab('calc')" class="px-4 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800">
+                    <i class="fa-solid fa-calculator"></i> 3. Калькулятор & Анықтама
+                </button>
+            </nav>
+        </div>
+
+        <!-- ==================== TAB 1: MAIN TASK (AINUR) ==================== -->
+        <section id="tab-main" class="flex flex-col gap-6">
+            
+            <!-- Reference Data Table Banner -->
+            <div class="glass-card rounded-3xl p-4 sm:p-6 border border-cyan-500/30">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border border-cyan-500/40">
+                        Негізгі Мағлұмат
+                    </span>
+                    <h2 class="text-lg sm:text-xl font-bold text-cyan-200 heading-font">
+                        📊 Деректер Кестесі (Тариф нормалары)
+                    </h2>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                    <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700 text-center flex flex-col justify-between">
+                        <i class="fa-brands fa-youtube text-red-500 text-2xl mb-1"></i>
+                        <span class="text-xs text-slate-300 font-semibold">1 сағ YouTube (HD)</span>
+                        <span class="text-base font-black text-amber-300 mt-1">1 ГБ</span>
+                    </div>
+                    <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700 text-center flex flex-col justify-between">
+                        <i class="fa-brands fa-tiktok text-pink-400 text-2xl mb-1"></i>
+                        <span class="text-xs text-slate-300 font-semibold">1 сағ TikTok</span>
+                        <span class="text-base font-black text-amber-300 mt-1">700 МБ</span>
+                    </div>
+                    <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700 text-center flex flex-col justify-between">
+                        <i class="fa-solid fa-phone text-emerald-400 text-2xl mb-1"></i>
+                        <span class="text-xs text-slate-300 font-semibold">10 мин WA Аудио</span>
+                        <span class="text-base font-black text-amber-300 mt-1">5 МБ</span>
+                    </div>
+                    <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700 text-center flex flex-col justify-between">
+                        <i class="fa-solid fa-video text-cyan-400 text-2xl mb-1"></i>
+                        <span class="text-xs text-slate-300 font-semibold">10 мин WA Бейне</span>
+                        <span class="text-base font-black text-amber-300 mt-1">80 МБ</span>
+                    </div>
+                    <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700 text-center flex flex-col justify-between">
+                        <i class="fa-solid fa-image text-purple-400 text-2xl mb-1"></i>
+                        <span class="text-xs text-slate-300 font-semibold">1 фото жіберу</span>
+                        <span class="text-base font-black text-amber-300 mt-1">2 МБ</span>
+                    </div>
+                    <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700 text-center flex flex-col justify-between">
+                        <i class="fa-solid fa-music text-blue-400 text-2xl mb-1"></i>
+                        <span class="text-xs text-slate-300 font-semibold">1 ән жүктеу</span>
+                        <span class="text-base font-black text-amber-300 mt-1">5 МБ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Situational Task Main Card -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Left: Task statement -->
+                <div class="lg:col-span-5 glass-card rounded-3xl p-6 flex flex-col justify-between border-2 border-amber-500/40 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wide border border-amber-500/30">
+                                <i class="fa-solid fa-star"></i> Жағдаяттық Тапсырма
+                            </span>
+                        </div>
+                        <h3 class="text-2xl font-black text-amber-300 mb-4 heading-font">
+                            📱 Айнұрдың Күндік Интернет Жұмсауы
+                        </h3>
+
+                        <p class="text-slate-200 text-base leading-relaxed mb-4">
+                            Айнұр бір күн ішінде интернетті былай қолданды:
+                        </p>
+
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center gap-3 bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+                                <div class="w-8 h-8 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-400 font-bold">1</div>
+                                <span class="text-sm sm:text-base font-medium text-slate-100">Таңертең <strong>30 минут TikTok</strong> көрді</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+                                <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold">2</div>
+                                <span class="text-sm sm:text-base font-medium text-slate-100">Түсте <strong>15 минуттық бейне қоңырау</strong> жасады</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+                                <div class="w-8 h-8 rounded-lg bg-red-500/20 flex items-center justify-center text-red-400 font-bold">3</div>
+                                <span class="text-sm sm:text-base font-medium text-slate-100">Кешке <strong>1 сағат YouTube</strong> қарады</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-800/90 p-3 rounded-xl border border-slate-700">
+                                <div class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">4</div>
+                                <span class="text-sm sm:text-base font-medium text-slate-100"><strong>5 фото</strong> жіберді</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 rounded-2xl text-center">
+                            <span class="text-lg font-black text-amber-200">❓ Барлығы қанша трафик жұмсалды?</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex gap-2">
+                        <button onclick="awardTeam(1, 10)" class="flex-1 py-2.5 bg-cyan-600 hover:bg-cyan-500 rounded-xl font-extrabold text-xs sm:text-sm transition-all shadow-md">
+                            +10 ұпай (1-Топ)
+                        </button>
+                        <button onclick="awardTeam(2, 10)" class="flex-1 py-2.5 bg-pink-600 hover:bg-pink-500 rounded-xl font-extrabold text-xs sm:text-sm transition-all shadow-md">
+                            +10 ұпай (2-Топ)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Step-by-Step Interactive Resolver on Smartboard -->
+                <div class="lg:col-span-7 glass-card rounded-3xl p-6 border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-extrabold text-cyan-300 heading-font flex items-center gap-2">
+                                <i class="fa-solid fa-list-check"></i> Интерактивті Қадамдық Есептеу
+                            </h3>
+                            <button onclick="resetAinurSteps()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-600 transition-colors">
+                                <i class="fa-solid fa-arrow-rotate-left"></i> Тазалау
+                            </button>
+                        </div>
+
+                        <!-- Step 1: TikTok -->
+                        <div class="mb-4 bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/80">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-sm text-pink-300">1. TikTok (30 минут):</span>
+                                <span class="text-xs text-slate-400">1 сағ = 700 МБ</span>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="text-xs text-slate-300">30 мин = 700 МБ / 2 =</span>
+                                <input id="ainur-step1" type="number" placeholder="?" class="w-24 bg-slate-900 border-2 border-slate-600 rounded-xl px-3 py-1.5 text-center font-bold text-amber-300 text-base focus:border-cyan-400 outline-none">
+                                <span class="font-bold text-sm">МБ</span>
+                                <button onclick="checkStep1()" class="ml-auto px-3 py-1.5 bg-sky-600 hover:bg-sky-500 text-xs font-bold rounded-xl transition-all">Тексеру</button>
+                            </div>
+                            <div id="step1-feedback" class="text-xs mt-1 font-semibold hidden"></div>
+                        </div>
+
+                        <!-- Step 2: Video Call -->
+                        <div class="mb-4 bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/80">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-sm text-cyan-300">2. Бейне қоңырау (15 минут):</span>
+                                <span class="text-xs text-slate-400">10 мин = 80 МБ (1 мин = 8 МБ)</span>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="text-xs text-slate-300">15 мин × 8 МБ =</span>
+                                <input id="ainur-step2" type="number" placeholder="?" class="w-24 bg-slate-900 border-2 border-slate-600 rounded-xl px-3 py-1.5 text-center font-bold text-amber-300 text-base focus:border-cyan-400 outline-none">
+                                <span class="font-bold text-sm">МБ</span>
+                                <button onclick="checkStep2()" class="ml-auto px-3 py-1.5 bg-sky-600 hover:bg-sky-500 text-xs font-bold rounded-xl transition-all">Тексеру</button>
+                            </div>
+                            <div id="step2-feedback" class="text-xs mt-1 font-semibold hidden"></div>
+                        </div>
+
+                        <!-- Step 3: YouTube -->
+                        <div class="mb-4 bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/80">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-sm text-red-300">3. YouTube (1 сағат):</span>
+                                <span class="text-xs text-slate-400">Норма: 1 ГБ</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-slate-300">1 сағат HD видео =</span>
+                                <input id="ainur-step3" type="text" value="1 ГБ" readonly class="w-24 bg-slate-900/80 border border-slate-700 rounded-xl px-3 py-1 text-center font-bold text-amber-300 text-base">
+                                <span class="text-xs text-slate-400">(немесе 1024 МБ)</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Photos -->
+                        <div class="mb-4 bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/80">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-bold text-sm text-purple-300">4. 5 Фото жіберу:</span>
+                                <span class="text-xs text-slate-400">1 фото = 2 МБ</span>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="text-xs text-slate-300">5 × 2 МБ =</span>
+                                <input id="ainur-step4" type="number" placeholder="?" class="w-24 bg-slate-900 border-2 border-slate-600 rounded-xl px-3 py-1.5 text-center font-bold text-amber-300 text-base focus:border-cyan-400 outline-none">
+                                <span class="font-bold text-sm">МБ</span>
+                                <button onclick="checkStep4()" class="ml-auto px-3 py-1.5 bg-sky-600 hover:bg-sky-500 text-xs font-bold rounded-xl transition-all">Тексеру</button>
+                            </div>
+                            <div id="step4-feedback" class="text-xs mt-1 font-semibold hidden"></div>
+                        </div>
+
+                        <!-- Step 5: Total Calculation -->
+                        <div class="p-4 bg-slate-900/90 rounded-2xl border-2 border-amber-500/60">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                                <div>
+                                    <span class="text-xs uppercase font-extrabold text-amber-400 tracking-wider">Қорытынды жауап:</span>
+                                    <div class="text-sm text-slate-300 font-bold mt-0.5">
+                                        1 ГБ + (350 МБ + 120 МБ + 10 МБ) =
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-2 w-full sm:w-auto">
+                                    <input id="ainur-total-mb" type="number" placeholder="МБ жиынтығы" class="w-32 bg-slate-800 border-2 border-amber-400 rounded-xl px-3 py-2 text-center font-black text-amber-300 text-lg focus:ring-2 focus:ring-amber-300 outline-none">
+                                    <span class="font-bold text-amber-300">МБ + 1 ГБ</span>
+                                    <button onclick="checkTotalAinur()" class="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black rounded-xl shadow-lg transition-all text-sm">
+                                        Жауапты Тексеру!
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="total-feedback" class="mt-3 p-2.5 rounded-xl text-center text-sm font-bold hidden"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 flex justify-end">
+                        <button onclick="toggleModal('modal-solution')" class="text-xs text-indigo-300 hover:text-indigo-200 underline flex items-center gap-1 font-bold">
+                            <i class="fa-solid fa-lightbulb"></i> Толық түсіндірме мен шешімін көру
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 2: TRAFFIC BATTLE GAME ==================== -->
+        <section id="tab-battle" class="hidden flex flex-col gap-6">
+            
+            <!-- Game Header Bar -->
+            <div class="glass-card rounded-3xl p-5 border border-indigo-500/40 flex flex-wrap justify-between items-center gap-4">
+                <div>
+                    <span class="bg-indigo-500/20 text-indigo-300 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border border-indigo-500/40">
+                        2 Топқа арналған сайыс
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-black text-white heading-font mt-1">
+                        ⚔️ «Трафик-Баттл» Блиц-Ойыны
+                    </h2>
+                    <p class="text-xs text-slate-300">Тақтада кезекпен немесе жылдамдыққа есептеп, өз тобыңызға ұпай жинаңыз!</p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="startNewBattleQuestion()" class="px-5 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 font-extrabold text-white text-sm rounded-2xl shadow-xl transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-dice"></i> Жаңа Сұрақ Алғышу
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active Question Card -->
+            <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-indigo-500/30 relative overflow-hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <span id="battle-round-badge" class="px-3 py-1 bg-slate-800 text-slate-300 border border-slate-700 rounded-full text-xs font-bold">
+                        Раунд: <span id="battle-round-num">1</span> / 10
+                    </span>
+
+                    <div class="flex gap-2">
+                        <span class="text-xs font-bold text-cyan-300 bg-cyan-950/80 border border-cyan-800 px-3 py-1 rounded-full">
+                            Кезек: <span id="battle-turn-indicator" class="text-white font-black">1-Топ</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Scenario Description -->
+                <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700/80 mb-6">
+                    <h3 id="battle-question-title" class="text-xl sm:text-2xl font-extrabold text-amber-300 mb-2 heading-font">
+                        Тапсырма жүктелуде...
+                    </h3>
+                    <p id="battle-question-text" class="text-slate-200 text-base sm:text-lg leading-relaxed">
+                        Сұрақ түймесін басыңыз.
+                    </p>
+                </div>
+
+                <!-- Answer Options (Multiple Choice or Direct Input) -->
+                <div class="space-y-3 mb-6">
+                    <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Дұрыс жауапты таңдаңыз:</p>
+                    <div id="battle-options-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <!-- Options generated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Answer Result Box -->
+                <div id="battle-result-box" class="p-4 rounded-2xl hidden text-center font-extrabold text-lg transition-all"></div>
+
+                <!-- Action controls for teacher/moderator -->
+                <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center flex-wrap gap-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-slate-400 font-bold">Таңдалған топқа ұпай беру:</span>
+                        <button onclick="addBattleScore(1)" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-xs font-black rounded-xl transition-all">+15 ұпай (1-Топ)</button>
+                        <button onclick="addBattleScore(2)" class="px-3 py-1.5 bg-pink-600 hover:bg-pink-500 text-xs font-black rounded-xl transition-all">+15 ұпай (2-Топ)</button>
+                    </div>
+
+                    <button onclick="showBattleHint()" class="text-xs text-amber-300 hover:text-amber-200 font-bold flex items-center gap-1">
+                        <i class="fa-solid fa-lightbulb"></i> Подсказка (Көмек)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 3: TRAFFIC CALCULATOR & PLAYGROUND ==================== -->
+        <section id="tab-calc" class="hidden flex flex-col gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Custom Interactive Calculator -->
+                <div class="lg:col-span-7 glass-card rounded-3xl p-6 border border-slate-700">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2.5 bg-indigo-500/20 text-indigo-300 rounded-xl">
+                            <i class="fa-solid fa-sliders text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-black text-white heading-font">
+                                Өз интернет күніңді құрастыр!
+                            </h3>
+                            <p class="text-xs text-slate-300">Төмендегі слайдерлерді жылжытып, күндік трафикті есептеңіз</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- YouTube slider -->
+                        <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-bold text-red-300"><i class="fa-brands fa-youtube"></i> YouTube (сағат)</span>
+                                <span id="calc-val-yt" class="text-sm font-black text-amber-300">0 сағат</span>
+                            </div>
+                            <input id="calc-slider-yt" type="range" min="0" max="10" step="0.5" value="0" oninput="updateCustomCalc()" class="w-full accent-red-500 h-2 bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+
+                        <!-- TikTok slider -->
+                        <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-bold text-pink-300"><i class="fa-brands fa-tiktok"></i> TikTok (минут)</span>
+                                <span id="calc-val-tt" class="text-sm font-black text-amber-300">0 минут</span>
+                            </div>
+                            <input id="calc-slider-tt" type="range" min="0" max="300" step="15" value="0" oninput="updateCustomCalc()" class="w-full accent-pink-500 h-2 bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+
+                        <!-- WhatsApp Audio slider -->
+                        <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-bold text-emerald-300"><i class="fa-solid fa-phone"></i> WA Аудио қоңырау (минут)</span>
+                                <span id="calc-val-wa-audio" class="text-sm font-black text-amber-300">0 минут</span>
+                            </div>
+                            <input id="calc-slider-wa-audio" type="range" min="0" max="120" step="10" value="0" oninput="updateCustomCalc()" class="w-full accent-emerald-500 h-2 bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+
+                        <!-- WhatsApp Video slider -->
+                        <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-bold text-cyan-300"><i class="fa-solid fa-video"></i> WA Бейне қоңырау (минут)</span>
+                                <span id="calc-val-wa-video" class="text-sm font-black text-amber-300">0 минут</span>
+                            </div>
+                            <input id="calc-slider-wa-video" type="range" min="0" max="120" step="5" value="0" oninput="updateCustomCalc()" class="w-full accent-cyan-500 h-2 bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+
+                        <!-- Photo count slider -->
+                        <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-bold text-purple-300"><i class="fa-solid fa-image"></i> Фото жіберу (саны)</span>
+                                <span id="calc-val-photo" class="text-sm font-black text-amber-300">0 фото</span>
+                            </div>
+                            <input id="calc-slider-photo" type="range" min="0" max="50" step="1" value="0" oninput="updateCustomCalc()" class="w-full accent-purple-500 h-2 bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+
+                        <!-- Songs downloaded -->
+                        <div class="bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-bold text-blue-300"><i class="fa-solid fa-music"></i> Ән жүктеу (саны)</span>
+                                <span id="calc-val-songs" class="text-sm font-black text-amber-300">0 ән</span>
+                            </div>
+                            <input id="calc-slider-songs" type="range" min="0" max="30" step="1" value="0" oninput="updateCustomCalc()" class="w-full accent-blue-500 h-2 bg-slate-700 rounded-lg cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result & Breakdown Card -->
+                <div class="lg:col-span-5 flex flex-col gap-4">
+                    <div class="glass-card rounded-3xl p-6 border-2 border-emerald-500/40 flex flex-col justify-between h-full">
+                        <div>
+                            <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider border border-emerald-500/40">
+                                Есептеу Нәтижесі
+                            </span>
+
+                            <h4 class="text-slate-300 font-bold text-sm mt-3">Жалпы Жұмсалған Трафик:</h4>
+                            
+                            <div class="my-4 p-4 bg-slate-900/90 rounded-2xl text-center border border-emerald-500/30">
+                                <span id="calc-result-mb" class="text-3xl sm:text-4xl font-black text-emerald-400 block heading-font">
+                                    0 МБ
+                                </span>
+                                <span id="calc-result-gb" class="text-xs sm:text-sm font-bold text-slate-300 mt-1 block">
+                                    (= 0 ГБ 0 МБ)
+                                </span>
+                            </div>
+
+                            <div class="space-y-2 text-xs">
+                                <div class="flex justify-between p-2 rounded-lg bg-slate-800/50">
+                                    <span class="text-slate-400">YouTube:</span>
+                                    <span id="breakdown-yt" class="font-bold text-white">0 МБ</span>
+                                </div>
+                                <div class="flex justify-between p-2 rounded-lg bg-slate-800/50">
+                                    <span class="text-slate-400">TikTok:</span>
+                                    <span id="breakdown-tt" class="font-bold text-white">0 МБ</span>
+                                </div>
+                                <div class="flex justify-between p-2 rounded-lg bg-slate-800/50">
+                                    <span class="text-slate-400">WA Аудио:</span>
+                                    <span id="breakdown-wa-audio" class="font-bold text-white">0 МБ</span>
+                                </div>
+                                <div class="flex justify-between p-2 rounded-lg bg-slate-800/50">
+                                    <span class="text-slate-400">WA Бейне:</span>
+                                    <span id="breakdown-wa-video" class="font-bold text-white">0 МБ</span>
+                                </div>
+                                <div class="flex justify-between p-2 rounded-lg bg-slate-800/50">
+                                    <span class="text-slate-400">Фотолар:</span>
+                                    <span id="breakdown-photo" class="font-bold text-white">0 МБ</span>
+                                </div>
+                                <div class="flex justify-between p-2 rounded-lg bg-slate-800/50">
+                                    <span class="text-slate-400">Әндер:</span>
+                                    <span id="breakdown-songs" class="font-bold text-white">0 МБ</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <button onclick="resetCustomCalc()" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-bold transition-all border border-slate-600">
+                                Барлық мәндерді нөлдеу
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-4 bg-slate-950/80 border-t border-slate-800 text-center text-xs text-slate-400">
+        <p>Информатика сабағына арналған интерактивті көрнекі құрал | Интерактивті тақта форматы</p>
+    </footer>
+
+    <!-- MODAL 1: RULES & INSTRUCTIONS -->
+    <div id="modal-rules" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card-light text-slate-900 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal('modal-rules')" class="absolute top-4 right-4 text-slate-500 hover:text-slate-800 text-2xl font-bold">
+                &times;
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-bold text-xl">
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+                <h3 class="text-2xl font-black heading-font text-indigo-950">Ойын Ережелері</h3>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                <div class="p-3 bg-indigo-50 rounded-2xl border border-indigo-100">
+                    <h4 class="font-extrabold text-indigo-900 mb-1">🎯 Мақсаты:</h4>
+                    <p>Топтаса отырып, берілген тарифтік деректерге сәйкес қолданылған интернет-трафикті дұрыс әрі жылдам есептеп шығу.</p>
+                </div>
+
+                <div class="p-3 bg-amber-50 rounded-2xl border border-amber-100">
+                    <h4 class="font-extrabold text-amber-900 mb-1">👥 Топтық Сайыс Форматы:</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>Сынып <strong>1-Топ</strong> және <strong>2-Топ</strong> болып 2 топқа бөлінеді.</li>
+                        <li><strong>1-бөлімде:</strong> Негізгі Айнұрдың тапсырмасын қадам-қадаммен интерактивті тақтада орындайды.</li>
+                        <li><strong>2-бөлімде («Трафик-Баттл»):</strong> Кезекпен берілетін блиц-сұрақтарға жауап беріп, ұпай жинайды (әрі дұрыс жауап үшін +15 ұпай).</li>
+                    </ul>
+                </div>
+
+                <div class="p-3 bg-emerald-50 rounded-2xl border border-emerald-100">
+                    <h4 class="font-extrabold text-emerald-900 mb-1">💡 Деректерді есте сақтаңыз:</h4>
+                    <p class="text-xs">1 ГБ = 1000 МБ (немесе 1024 МБ) • 1 сағ TikTok = 700 МБ • 10 мин WA бейне = 80 МБ • 1 photo = 2 МБ</p>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <button onclick="toggleModal('modal-rules')" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold rounded-xl shadow-lg transition-all">
+                    Түсінікті, Бастаймыз!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: FULL STEP-BY-STEP SOLUTION -->
+    <div id="modal-solution" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card-light text-slate-900 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal('modal-solution')" class="absolute top-4 right-4 text-slate-500 hover:text-slate-800 text-2xl font-bold">
+                &times;
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xl">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h3 class="text-2xl font-black heading-font text-emerald-950">Айнұр Тапсырмасының Толық Шешімі</h3>
+            </div>
+
+            <div class="space-y-3 text-sm text-slate-800">
+                <div class="p-3 bg-pink-50 rounded-xl border border-pink-200">
+                    <strong>1) TikTok:</strong> 30 минут көрген. 1 сағат (60 мин) = 700 МБ болғандықтан, 30 мин = 700 / 2 = <strong>350 МБ</strong>.
+                </div>
+                <div class="p-3 bg-cyan-50 rounded-xl border border-cyan-200">
+                    <strong>2) WhatsApp Бейне қоңырау:</strong> 15 минут. 10 мин = 80 МБ болса, 1 мин = 8 МБ. Олай болса 15 × 8 = <strong>120 МБ</strong>.
+                </div>
+                <div class="p-3 bg-red-50 rounded-xl border border-red-200">
+                    <strong>3) YouTube:</strong> 1 сағат HD бейне = <strong>1 ГБ</strong>.
+                </div>
+                <div class="p-3 bg-purple-50 rounded-xl border border-purple-200">
+                    <strong>4) Фото жіберу:</strong> 5 фото. 1 фото = 2 МБ болғандықтан, 5 × 2 = <strong>10 МБ</strong>.
+                </div>
+
+                <div class="p-4 bg-amber-100 rounded-2xl border-2 border-amber-300 text-slate-900">
+                    <h4 class="font-extrabold text-amber-950 text-base mb-1">📌 Жалпы Қосынды:</h4>
+                    <p class="text-base font-bold text-amber-900">
+                        1 ГБ + (350 МБ + 120 МБ + 10 МБ) = <span class="text-emerald-700 underline text-lg">1 ГБ 480 МБ</span> (немесе 1480 МБ / 1504 МБ)
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <button onclick="toggleModal('modal-solution')" class="px-6 py-2.5 bg-slate-800 text-white font-bold rounded-xl shadow-lg hover:bg-slate-700 transition-all">
+                    Жабу
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Game State Variables
+        let team1Score = 0;
+        let team2Score = 0;
+        let soundEnabled = true;
+        let battleRound = 1;
+        let currentBattleTurn = 1; // Team 1 or Team 2
+        let currentBattleAnswer = null;
+
+        // Audio Effects Synthesizer using Web Audio API
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                const now = audioCtx.currentTime;
+
+                if (type === 'correct') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.1); // E5
+                    osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.2); // G5
+                    osc.frequency.exponentialRampToValueAtTime(1046.50, now + 0.3); // C6
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+                    osc.start(now);
+                    osc.stop(now + 0.5);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.linearRampToValueAtTime(130, now + 0.25);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                } else if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(400, now);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                    osc.start(now);
+                    osc.stop(now + 0.05);
+                }
+            } catch (e) {
+                console.log('Audio playback error:', e);
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const btn = document.getElementById('sound-btn');
+            if (soundEnabled) {
+                btn.innerHTML = '<i class="fa-solid fa-volume-high text-lg"></i>';
+                btn.classList.remove('text-slate-500');
+                btn.classList.add('text-amber-400');
+                playSound('click');
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-volume-xmark text-lg"></i>';
+                btn.classList.remove('text-amber-400');
+                btn.classList.add('text-slate-500');
+            }
+        }
+
+        // Tab Switching
+        function switchTab(tabId) {
+            playSound('click');
+            document.getElementById('tab-main').classList.add('hidden');
+            document.getElementById('tab-battle').classList.add('hidden');
+            document.getElementById('tab-calc').classList.add('hidden');
+
+            document.getElementById('tab-btn-main').className = "px-4 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800";
+            document.getElementById('tab-btn-battle').className = "px-4 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800";
+            document.getElementById('tab-btn-calc').className = "px-4 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-800";
+
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+            activeBtn.className = "px-4 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 bg-indigo-600 text-white shadow-lg";
+
+            if (tabId === 'battle' && battleRound === 1 && !currentBattleAnswer) {
+                startNewBattleQuestion();
+            }
+        }
+
+        // Modal Handler
+        function toggleModal(modalId) {
+            playSound('click');
+            const modal = document.getElementById(modalId);
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Score Management
+        function awardTeam(teamNum, points) {
+            playSound('correct');
+            if (teamNum === 1) {
+                team1Score += points;
+                document.getElementById('score-team1').innerText = team1Score;
+            } else {
+                team2Score += points;
+                document.getElementById('score-team2').innerText = team2Score;
+            }
+            triggerConfetti();
+        }
+
+        function resetScores() {
+            playSound('click');
+            team1Score = 0;
+            team2Score = 0;
+            document.getElementById('score-team1').innerText = 0;
+            document.getElementById('score-team2').innerText = 0;
+        }
+
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 50,
+                    spread: 60,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        // Main Task Step Validation
+        function checkStep1() {
+            const val = parseInt(document.getElementById('ainur-step1').value);
+            const fb = document.getElementById('step1-feedback');
+            fb.classList.remove('hidden');
+            if (val === 350) {
+                playSound('correct');
+                fb.className = "text-xs mt-1 font-bold text-emerald-400";
+                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Өте дұрыс! (700 МБ / 2 = 350 МБ)';
+            } else {
+                playSound('wrong');
+                fb.className = "text-xs mt-1 font-bold text-red-400";
+                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Қате. Ескерту: 1 сағатта 700 МБ, ал 30 мин жарты сағат.';
+            }
+        }
+
+        function checkStep2() {
+            const val = parseInt(document.getElementById('ainur-step2').value);
+            const fb = document.getElementById('step2-feedback');
+            fb.classList.remove('hidden');
+            if (val === 120) {
+                playSound('correct');
+                fb.className = "text-xs mt-1 font-bold text-emerald-400";
+                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Дұрыс! (10 мин = 80 МБ, 5 мин = 40 МБ -> 120 МБ)';
+            } else {
+                playSound('wrong');
+                fb.className = "text-xs mt-1 font-bold text-red-400";
+                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Қате. Есте сақтаңыз: 10 мин = 80 МБ, 15 мин = 1.5 × 80 = 120 МБ';
+            }
+        }
+
+        function checkStep4() {
+            const val = parseInt(document.getElementById('ainur-step4').value);
+            const fb = document.getElementById('step4-feedback');
+            fb.classList.remove('hidden');
+            if (val === 10) {
+                playSound('correct');
+                fb.className = "text-xs mt-1 font-bold text-emerald-400";
+                fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Тамаша! (5 × 2 МБ = 10 МБ)';
+            } else {
+                playSound('wrong');
+                fb.className = "text-xs mt-1 font-bold text-red-400";
+                fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Қате. 1 фото = 2 МБ.';
+            }
+        }
+
+        function checkTotalAinur() {
+            const val = parseInt(document.getElementById('ainur-total-mb').value);
+            const fb = document.getElementById('total-feedback');
+            fb.classList.remove('hidden');
+
+            // Accept 480 (since 1GB is separate) or 1480 / 1504
+            if (val === 480 || val === 1480 || val === 1504) {
+                playSound('correct');
+                triggerConfetti();
+                fb.className = "p-3 rounded-xl bg-emerald-500/20 border border-emerald-500 text-emerald-300 text-center font-black text-base";
+                fb.innerHTML = '🎉 КЕРЕМЕТ! Айнұр барлығы 1 ГБ және 480 МБ жұмсады! (Топтарға 20 ұпай сыйланды!)';
+                awardTeam(1, 10);
+                awardTeam(2, 10);
+            } else {
+                playSound('wrong');
+                fb.className = "p-3 rounded-xl bg-red-500/20 border border-red-500 text-red-300 text-center font-bold text-sm";
+                fb.innerHTML = '❌ Қайта есептеп көріңіз: 350 МБ (TikTok) + 120 МБ (Бейне) + 10 МБ (Фото) = ? МБ (және +1 ГБ YouTube)';
+            }
+        }
+
+        function resetAinurSteps() {
+            playSound('click');
+            document.getElementById('ainur-step1').value = '';
+            document.getElementById('ainur-step2').value = '';
+            document.getElementById('ainur-step4').value = '';
+            document.getElementById('ainur-total-mb').value = '';
+
+            document.getElementById('step1-feedback').classList.add('hidden');
+            document.getElementById('step2-feedback').classList.add('hidden');
+            document.getElementById('step4-feedback').classList.add('hidden');
+            document.getElementById('total-feedback').classList.add('hidden');
+        }
+
+        // Battle Questions Database
+        const battleQuestions = [
+            {
+                title: "1-Сұрақ: Арманның TikTok-ы",
+                text: "Арман 2 сағат TikTok видео қарады және 10 ән жүктеді. Ол барлығы қанша МБ интернет жұмсады?",
+                options: ["1450 МБ", "1400 МБ", "1500 МБ", "750 МБ"],
+                correct: 0,
+                hint: "1 сағ TikTok = 700 МБ (2 сағ = 1400 МБ). 1 ән = 5 МБ (10 ән = 50 МБ). Жалпы = 1400 + 50 = 1450 МБ."
+            },
+            {
+                title: "2-Сұрақ: Динаның WhatsApp қоңырауы",
+                text: "Дина 30 минут WhatsApp арқылы БЕЙНЕ қоңырау жасады және 20 фото жіберді. Барлығы қанша МБ?",
+                options: ["280 МБ", "240 МБ", "300 МБ", "180 МБ"],
+                correct: 0,
+                hint: "10 мин WA бейне = 80 МБ (30 мин = 240 МБ). 1 фото = 2 МБ (20 фото = 40 МБ). 240 + 40 = 280 МБ."
+            },
+            {
+                title: "3-Сұрақ: Даниярдың YouTube & Аудиосы",
+                text: "Данияр 20 минут WhatsApp АУДИО қоңырау соқты және 1 сағат YouTube қарады. Неше МБ / ГБ жұмсалды?",
+                options: ["1 ГБ 10 МБ", "1 ГБ 20 МБ", "1 ГБ 80 МБ", "500 МБ"],
+                correct: 0,
+                hint: "10 мин WA аудио = 5 МБ (20 мин = 10 МБ). 1 сағ YouTube = 1 ГБ. Жалпы = 1 ГБ 10 МБ."
+            },
+            {
+                title: "4-Сұрақ: Әлияның фотосы мен музыкасы",
+                text: "Әлия 15 фото жіберді және 6 ән жүктеді. Оның жұмсаған трафигі қанша?",
+                options: ["60 МБ", "30 МБ", "45 МБ", "50 МБ"],
+                correct: 0,
+                hint: "15 фото × 2 МБ = 30 МБ. 6 ән × 5 МБ = 30 МБ. 30 + 30 = 60 МБ."
+            },
+            {
+                title: "5-Сұрақ: TikTok пен WhatsApp Аудио",
+                text: "Санжар 15 минут TikTok көрді және 40 минут WA аудио арқылы сөйлесті. Жалпы жұмсалған МБ?",
+                options: ["195 МБ", "175 МБ", "200 МБ", "150 МБ"],
+                correct: 0,
+                hint: "15 мин TikTok = 700 / 4 = 175 МБ. 40 мин WA аудио = 4 × 5 = 20 МБ. 175 + 20 = 195 МБ."
+            }
+        ];
+
+        let currentQIndex = 0;
+
+        function startNewBattleQuestion() {
+            playSound('click');
+            currentQIndex = Math.floor(Math.random() * battleQuestions.length);
+            const q = battleQuestions[currentQIndex];
+
+            document.getElementById('battle-round-num').innerText = battleRound;
+            document.getElementById('battle-turn-indicator').innerText = currentBattleTurn + "-Топ";
+            document.getElementById('battle-turn-indicator').className = currentBattleTurn === 1 ? "text-cyan-400 font-black" : "text-pink-400 font-black";
+
+            document.getElementById('battle-question-title').innerText = q.title;
+            document.getElementById('battle-question-text').innerText = q.text;
+
+            const grid = document.getElementById('battle-options-grid');
+            grid.innerHTML = '';
+
+            // Shuffle options slightly or present in order
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "p-4 bg-slate-800 hover:bg-indigo-900/60 border-2 border-slate-700 hover:border-indigo-500 rounded-2xl text-left font-extrabold text-base sm:text-lg text-white transition-all flex items-center justify-between group";
+                btn.innerHTML = `
+                    <span>${opt}</span>
+                    <i class="fa-solid fa-arrow-right text-slate-500 group-hover:text-amber-400 transition-colors"></i>
+                `;
+                btn.onclick = () => handleBattleAnswer(idx, q.correct);
+                grid.appendChild(btn);
+            });
+
+            const resBox = document.getElementById('battle-result-box');
+            resBox.classList.add('hidden');
+        }
+
+        function handleBattleAnswer(selectedIdx, correctIdx) {
+            const resBox = document.getElementById('battle-result-box');
+            resBox.classList.remove('hidden');
+
+            if (selectedIdx === correctIdx) {
+                playSound('correct');
+                triggerConfetti();
+                resBox.className = "p-4 rounded-2xl bg-emerald-500/20 border-2 border-emerald-500 text-emerald-300 text-center font-black text-lg";
+                resBox.innerHTML = `🎉 ДҰРЫС ЖАУАП! ${currentBattleTurn}-Топқа +15 ұпай берілді!`;
+                
+                awardTeam(currentBattleTurn, 15);
+            } else {
+                playSound('wrong');
+                resBox.className = "p-4 rounded-2xl bg-red-500/20 border-2 border-red-500 text-red-300 text-center font-bold text-base";
+                resBox.innerHTML = `❌ ҚАБЫЛДАНБАДЫ. Өкінішке орай бұл қате жауап.`;
+            }
+
+            // Switch turn & update round
+            currentBattleTurn = currentBattleTurn === 1 ? 2 : 1;
+            battleRound++;
+        }
+
+        function showBattleHint() {
+            playSound('click');
+            const q = battleQuestions[currentQIndex];
+            alert("💡 Түсіндірме: " + q.hint);
+        }
+
+        function addBattleScore(teamNum) {
+            awardTeam(teamNum, 15);
+        }
+
+        // Custom Calculator logic
+        function updateCustomCalc() {
+            const yt = parseFloat(document.getElementById('calc-slider-yt').value);
+            const tt = parseInt(document.getElementById('calc-slider-tt').value);
+            const waAudio = parseInt(document.getElementById('calc-slider-wa-audio').value);
+            const waVideo = parseInt(document.getElementById('calc-slider-wa-video').value);
+            const photo = parseInt(document.getElementById('calc-slider-photo').value);
+            const songs = parseInt(document.getElementById('calc-slider-songs').value);
+
+            // Update UI labels
+            document.getElementById('calc-val-yt').innerText = yt + " сағат";
+            document.getElementById('calc-val-tt').innerText = tt + " минут";
+            document.getElementById('calc-val-wa-audio').innerText = waAudio + " минут";
+            document.getElementById('calc-val-wa-video').innerText = waVideo + " минут";
+            document.getElementById('calc-val-photo').innerText = photo + " фото";
+            document.getElementById('calc-val-songs').innerText = songs + " ән";
+
+            // Calculations
+            // YouTube: 1 hr = 1000 MB (1 GB)
+            const ytMB = yt * 1000;
+            // TikTok: 1 hr = 700 MB -> 1 min = 700/60 = 11.666 MB
+            const ttMB = Math.round((tt / 60) * 700);
+            // WA Audio: 10 min = 5 MB -> 1 min = 0.5 MB
+            const waAudioMB = Math.round(waAudio * 0.5);
+            // WA Video: 10 min = 80 MB -> 1 min = 8 MB
+            const waVideoMB = Math.round(waVideo * 8);
+            // Photo: 1 photo = 2 MB
+            const photoMB = photo * 2;
+            // Songs: 1 song = 5 MB
+            const songsMB = songs * 5;
+
+            const totalMB = ytMB + ttMB + waAudioMB + waVideoMB + photoMB + songsMB;
+            const totalGB = (totalMB / 1000).toFixed(2);
+
+            // Update breakdown text
+            document.getElementById('breakdown-yt').innerText = ytMB + " МБ (" + yt + " сағ)";
+            document.getElementById('breakdown-tt').innerText = ttMB + " МБ";
+            document.getElementById('breakdown-wa-audio').innerText = waAudioMB + " МБ";
+            document.getElementById('breakdown-wa-video').innerText = waVideoMB + " МБ";
+            document.getElementById('breakdown-photo').innerText = photoMB + " МБ";
+            document.getElementById('breakdown-songs').innerText = songsMB + " МБ";
+
+            document.getElementById('calc-result-mb').innerText = totalMB.toLocaleString() + " МБ";
+            document.getElementById('calc-result-gb').innerText = `(= ${Math.floor(totalMB / 1000)} ГБ ${totalMB % 1000} МБ)`;
+        }
+
+        function resetCustomCalc() {
+            playSound('click');
+            document.getElementById('calc-slider-yt').value = 0;
+            document.getElementById('calc-slider-tt').value = 0;
+            document.getElementById('calc-slider-wa-audio').value = 0;
+            document.getElementById('calc-slider-wa-video').value = 0;
+            document.getElementById('calc-slider-photo').value = 0;
+            document.getElementById('calc-slider-songs').value = 0;
+            updateCustomCalc();
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            updateCustomCalc();
+        };
+    </script>
+</body>
+</html>
