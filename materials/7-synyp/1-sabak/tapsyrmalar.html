@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жеке қауіпсіздік және сервистік программалар - 7-сынып Информатика</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .tab-btn.active {
+            background-color: #2563eb;
+            color: #ffffff;
+            border-color: #3b82f6;
+        }
+        .gradient-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border: 1px solid rgba(51, 65, 85, 0.7);
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.25);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Navigation Header -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/30">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-white tracking-wide">Информатика 7-сынып</h1>
+                    <p class="text-xs text-blue-400 font-medium">7.4.1.1 Оқу мақсаты</p>
+                </div>
+            </div>
+            
+            <!-- Quick Navigation Pills -->
+            <nav class="flex flex-wrap gap-2 justify-center">
+                <button onclick="switchTab('theory')" id="btn-theory" class="tab-btn active px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition border border-slate-700 hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-book-open"></i> Теория
+                </button>
+                <button onclick="switchTab('simulator')" id="btn-simulator" class="tab-btn px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition border border-slate-700 hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-microchip"></i> Интерактивті Лаб
+                </button>
+                <button onclick="switchTab('group')" id="btn-group" class="tab-btn px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition border border-slate-700 hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-users"></i> Топтық жұмыс
+                </button>
+                <button onclick="switchTab('pair')" id="btn-pair" class="tab-btn px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition border border-slate-700 hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-user-group"></i> Жұптық жұмыс
+                </button>
+                <button onclick="switchTab('individual')" id="btn-individual" class="tab-btn px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition border border-slate-700 hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-user-check"></i> Жеке тапсырмалар
+                </button>
+                <button onclick="switchTab('rubrics')" id="btn-rubrics" class="tab-btn px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition border border-slate-700 hover:bg-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-square-poll-vertical"></i> Бағалау
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Hero Banner -->
+    <section class="bg-gradient-to-r from-blue-900/40 via-indigo-900/30 to-slate-900 border-b border-slate-800 py-8 px-4">
+        <div class="max-w-7xl mx-auto text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-3 max-w-3xl">
+                <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-semibold rounded-full border border-blue-500/30">
+                    Ақпараттық қауіпсіздік және сервистік программалар
+                </span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+                    Жеке қауіпсіздік және ондағы сервистік программалардың рөлі
+                </h2>
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                    <strong class="text-blue-400">Оқу мақсаты (7.4.1.1):</strong> Компьютерді және есептік жазбаны сенімді құпиясөздер, екі сатылы аутентификация, антивирустық программалық жасақтама мен деректерді мұрағаттау арқылы қорғауды қамтамасыз ету.
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <div class="gradient-card p-4 rounded-xl flex items-center gap-3 border border-slate-700">
+                    <i class="fa-solid fa-clock-rotate-left text-2xl text-cyan-400"></i>
+                    <div>
+                        <div class="text-xs text-slate-400">Ұсынылатын уақыт</div>
+                        <div class="font-bold text-sm text-white">45 минут</div>
+                    </div>
+                </div>
+                <div class="gradient-card p-4 rounded-xl flex items-center gap-3 border border-slate-700">
+                    <i class="fa-solid fa-graduation-cap text-2xl text-emerald-400"></i>
+                    <div>
+                        <div class="text-xs text-slate-400">Сынып деңгейі</div>
+                        <div class="font-bold text-sm text-white">7-сынып</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+
+        <!-- TAB 1: THEORY -->
+        <section id="tab-theory" class="tab-content space-y-8">
+            <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                <i class="fa-solid fa-book-bookmark text-2xl text-blue-400"></i>
+                <h3 class="text-xl font-bold text-white">Теориялық негіздер (Анықтамалық материал)</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="gradient-card p-6 rounded-2xl hover:border-blue-500/50 transition duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl mb-4 border border-blue-500/20">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">1. Сенімді құпиясөз</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                        Кемінде 8-12 таңбадан тұратын, бас және кіші әріптерді, цифрлар мен арнайы таңбаларды ($#@!) қамтитын құпия сөз. Жеке деректерді қамтымауы тиіс.
+                    </p>
+                    <ul class="text-xs text-slate-400 space-y-1">
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Ұзындығы ≥ 8-12 таңба</li>
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Аралас регистрлер (A-z)</li>
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Арнайы белгілер (!@#$)</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="gradient-card p-6 rounded-2xl hover:border-indigo-500/50 transition duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-xl mb-4 border border-indigo-500/20">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">2. Екі сатылы аутентификация (2FA)</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                        Есептік жазбаға кіру кезінде құпиясөзден өзге екінші растау сатысын (SMS-код, push-хабарлама немесе Authenticator бағдарламасы) талап ету жүйесі.
+                    </p>
+                    <ul class="text-xs text-slate-400 space-y-1">
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Құпиясөз ұрланғанда қорғайды</li>
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Уақытша 6 таңбалы код</li>
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Қосымша қауіпсіздік қабаты</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="gradient-card p-6 rounded-2xl hover:border-emerald-500/50 transition duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4 border border-emerald-500/20">
+                        <i class="fa-solid fa-virus-slash"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">3. Антивирустық бағдарлама</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                        Компьютерді зиянды бағдарламалардан (вирус, троян, шпиондық бағдарламалар) іздеуге, анықтауға, жоюға және оқшаулауға (карантин) арналған сервистік бағдарлама.
+                    </p>
+                    <ul class="text-xs text-slate-400 space-y-1">
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Реалоидты уақытта сканерлеу</li>
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Дерекқорды жүйелі жаңарту</li>
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Брандмауэр / Файрвол тексерісі</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="gradient-card p-6 rounded-2xl hover:border-amber-500/50 transition duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-4 border border-amber-500/20">
+                        <i class="fa-solid fa-file-zipper"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">4. Деректерді мұрағаттау (Archiving)</h4>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                        Файлдардың көлемін кішірейту (сығу) және бірнеше файлды бір мұрағатқа (ZIP, RAR, 7z) біріктіру процесі. Сақтау орнын үнемдеп, сақтық көшірме (Backup) жасауды жеңілдетеді.
+                    </p>
+                    <ul class="text-xs text-slate-400 space-y-1">
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Диск кеңістігін үнемдейді</li>
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Құпия файлдарды шифрлау</li>
+                        <li><i class="fa-solid fa-check text-emerald-400 mr-1"></i> Сақтық көшірме (Backup) жасау</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Additional Infographic summary -->
+            <div class="gradient-card p-6 rounded-2xl border border-blue-500/30">
+                <h4 class="text-base font-bold text-blue-400 mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-lightbulb"></i> Есте сақтаңыз: Кешенді қауіпсіздік формуласы
+                </h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700">
+                        <div class="text-xs text-slate-400 mb-1">1-Қадам</div>
+                        <div class="font-semibold text-white text-sm">Кіруді қорғау</div>
+                        <p class="text-xs text-slate-400 mt-1">Сенімді құпиясөз + 2FA баптау</p>
+                    </div>
+                    <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700">
+                        <div class="text-xs text-slate-400 mb-1">2-Қадам</div>
+                        <div class="font-semibold text-white text-sm">Жүйені қорғау</div>
+                        <p class="text-xs text-slate-400 mt-1">Антивирусты іске қосып, жаңартып отыру</p>
+                    </div>
+                    <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700">
+                        <div class="text-xs text-slate-400 mb-1">3-Қадам</div>
+                        <div class="font-semibold text-white text-sm">Деректі қорғау</div>
+                        <p class="text-xs text-slate-400 mt-1">Файлдарды мұрағаттау және сақтық көшірме жасау</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: INTERACTIVE SIMULATOR LAB -->
+        <section id="tab-simulator" class="tab-content hidden space-y-8">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-flask text-2xl text-cyan-400"></i>
+                    <h3 class="text-xl font-bold text-white">Интерактивті Тәжірибелік Лаборатория</h3>
+                </div>
+                <span class="text-xs bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full border border-cyan-500/30">Практикалық тренажер</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Tool 1: Password Tester & Generator -->
+                <div class="gradient-card p-6 rounded-2xl border border-slate-700 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-white text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-shield-virus text-blue-400"></i> Құпиясөз беріктігін тексеруші
+                        </h4>
+                        <span id="pass-badge" class="text-xs px-2.5 py-1 rounded font-semibold bg-slate-700 text-slate-300">Күтілуде</span>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">Құпиясөзді енгізіңіз немесе генерациялаңыз:</label>
+                        <div class="relative">
+                            <input type="text" id="pass-input" oninput="testPassword()" placeholder="Мысалы: Kz#2026!Sec" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-blue-500 pr-24">
+                            <button onclick="generateRandomPassword()" class="absolute right-2 top-2 bg-blue-600 hover:bg-blue-500 text-white text-xs px-3 py-1.5 rounded-lg transition">
+                                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Жасау
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div>
+                        <div class="flex justify-between text-xs text-slate-400 mb-1">
+                            <span>Беріктік деңгейі:</span>
+                            <span id="pass-score-text">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                            <div id="pass-meter" class="bg-red-500 h-full w-0 transition-all duration-500"></div>
+                        </div>
+                    </div>
+
+                    <!-- Criteria Checklist -->
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div id="c-len" class="text-slate-500 flex items-center gap-2"><i class="fa-regular fa-circle"></i> 8+ таңба бар</div>
+                        <div id="c-upper" class="text-slate-500 flex items-center gap-2"><i class="fa-regular fa-circle"></i> Бас әріп (A-Z)</div>
+                        <div id="c-lower" class="text-slate-500 flex items-center gap-2"><i class="fa-regular fa-circle"></i> Кіші әріп (a-z)</div>
+                        <div id="c-num" class="text-slate-500 flex items-center gap-2"><i class="fa-regular fa-circle"></i> Цифр (0-9)</div>
+                        <div id="c-sym" class="text-slate-500 flex items-center gap-2 col-span-2"><i class="fa-regular fa-circle"></i> Арнайы белгі (!@#$%^&*)</div>
+                    </div>
+
+                    <div id="pass-feedback" class="p-3 bg-slate-800/60 rounded-xl text-xs text-slate-300 border border-slate-700">
+                        Кеңес: Ешқашан атыңызды, туған жылыңызды немесе "123456" сияқты қарапайым тізбекті құпиясөз ретінде пайдаланбаңыз!
+                    </div>
+                </div>
+
+                <!-- Tool 2: 2FA Simulator -->
+                <div class="gradient-card p-6 rounded-2xl border border-slate-700 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <h4 class="font-bold text-white text-lg flex items-center gap-2">
+                            <i class="fa-solid fa-lock text-indigo-400"></i> 2FA Симуляторы (Екі сатылы кіру)
+                        </h4>
+                        <span class="text-xs bg-indigo-500/20 text-indigo-300 px-2.5 py-1 rounded font-semibold border border-indigo-500/30">Сондай-ақ қорғаныс</span>
+                    </div>
+
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Төмендегі түймені басып, SMS арқылы келген уақытша кодты имитациялаңыз және есептік жазбаға кіруді растаңыз.
+                    </p>
+
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 flex items-center justify-between">
+                        <div>
+                            <div class="text-xs text-slate-400">Генерацияланған OTP код:</div>
+                            <div id="otp-code" class="text-2xl font-mono font-bold text-cyan-400 tracking-wider">------</div>
+                        </div>
+                        <button onclick="request2FACode()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-4 py-2 rounded-xl transition">
+                            <i class="fa-solid fa-paper-plane mr-1"></i> Код жіберу
+                        </button>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-xs text-slate-400">Растау кодын енгізіңіз:</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="otp-input" maxlength="6" placeholder="6 санды код" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-center text-lg font-mono tracking-widest text-white focus:outline-none focus:border-indigo-500">
+                            <button onclick="verify2FA()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-5 py-2.5 rounded-xl font-semibold transition">
+                                Тексеру
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="otp-result" class="p-3 bg-slate-800/60 rounded-xl text-xs text-center font-medium text-slate-400 border border-slate-700">
+                        Кодты күтуде...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tool 3: Archiving & Antivirus Quick Quiz Simulation -->
+            <div class="gradient-card p-6 rounded-2xl border border-slate-700">
+                <h4 class="font-bold text-white text-lg mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-file-zipper text-amber-400"></i> Мұрағаттау бағдарламасын таңдау лабораториясы
+                </h4>
+                <p class="text-xs text-slate-300 mb-4">
+                    Төмендегі бағдарламалардың қайсысы <strong>мұрағаттаушы (архиватор)</strong>, қайсысы <strong>антивирус</strong> екенін топтастырыңыз:
+                </p>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <button onclick="checkAppType('WinRAR', 'archive')" class="p-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-center text-xs font-semibold text-white transition">
+                        <i class="fa-solid fa-file-zipper text-amber-400 text-xl block mb-1"></i> WinRAR
+                    </button>
+                    <button onclick="checkAppType('Kaspersky', 'antivirus')" class="p-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-center text-xs font-semibold text-white transition">
+                        <i class="fa-solid fa-shield-virus text-emerald-400 text-xl block mb-1"></i> Kaspersky
+                    </button>
+                    <button onclick="checkAppType('7-Zip', 'archive')" class="p-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-center text-xs font-semibold text-white transition">
+                        <i class="fa-solid fa-file-zipper text-amber-400 text-xl block mb-1"></i> 7-Zip
+                    </button>
+                    <button onclick="checkAppType('Avast', 'antivirus')" class="p-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-center text-xs font-semibold text-white transition">
+                        <i class="fa-solid fa-shield-cat text-emerald-400 text-xl block mb-1"></i> Avast
+                    </button>
+                </div>
+                <div id="app-type-result" class="mt-4 p-3 bg-slate-900 rounded-xl text-xs text-slate-300 border border-slate-800 text-center">
+                    Бағдарлама түймесін басып тексеріңіз.
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: GROUP WORK -->
+        <section id="tab-group" class="tab-content hidden space-y-8">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-800 pb-3 gap-4">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-users text-2xl text-purple-400"></i>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Топтық жұмыс: "Кибер-Қалқан" Жобасы</h3>
+                        <p class="text-xs text-slate-400">Топтарға бөлініп, берілген ситуациялық кейсті талдаңыз және шешім ұсыныңыз.</p>
+                    </div>
+                </div>
+
+                <!-- Classroom Timer Widget -->
+                <div class="gradient-card px-4 py-2 rounded-xl flex items-center gap-3 border border-purple-500/30">
+                    <i class="fa-solid fa-stopwatch text-purple-400 text-xl"></i>
+                    <div>
+                        <div class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Топтық Таймер</div>
+                        <div id="timer-display" class="font-mono font-bold text-white text-lg">10:00</div>
+                    </div>
+                    <div class="flex gap-1 ml-2">
+                        <button onclick="toggleTimer()" id="timer-btn" class="bg-purple-600 hover:bg-purple-500 text-white text-xs p-1.5 rounded transition">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                        <button onclick="resetTimer()" class="bg-slate-700 hover:bg-slate-600 text-white text-xs p-1.5 rounded transition">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Group 1 -->
+                <div class="gradient-card p-6 rounded-2xl border-l-4 border-l-blue-500 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">1-ТОП</span>
+                        <i class="fa-solid fa-key text-slate-500"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white">"Құпиясөз сарапшылары"</h4>
+                    <div class="p-3 bg-slate-900/70 rounded-xl text-xs text-slate-300 space-y-2 border border-slate-800">
+                        <p class="font-semibold text-blue-300">Кейс жағдаят:</p>
+                        <p>Оқушы мектеп компьютерінде әлеуметтік желіге "12345678" құпиясөзімен кіріп, аккаунтынан шығуды ұмытып кетті. Нәтижесінде оның парақшасы бұзылды.</p>
+                    </div>
+                    <div class="space-y-1 text-xs text-slate-400">
+                        <p class="font-semibold text-slate-200">Тапсырмалар:</p>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li>Құпиясөздің негізгі 3 қателігін көрсетіңіз.</li>
+                            <li>Сенімді құпиясөз құрастырудың 4 ережесін жазыңыз.</li>
+                            <li>Постер жасап, сыныпқа қорғаңыз.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Group 2 -->
+                <div class="gradient-card p-6 rounded-2xl border-l-4 border-l-indigo-500 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">2-ТОП</span>
+                        <i class="fa-solid fa-shield-halved text-slate-500"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white">"2FA Қорғаушылары"</h4>
+                    <div class="p-3 bg-slate-900/70 rounded-xl text-xs text-slate-300 space-y-2 border border-slate-800">
+                        <p class="font-semibold text-indigo-300">Кейс жағдаят:</p>
+                        <p>Пайдаланушының құпиясөзі сыртқа тарап кетсе де, екі сатылы аутентификацияның (2FA) арқасында қаскөйлер оның почтасына кіре алмады.</p>
+                    </div>
+                    <div class="space-y-1 text-xs text-slate-400">
+                        <p class="font-semibold text-slate-200">Тапсырмалар:</p>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li>2FA жүйесінің жұмыс істеу механизмін схема түрінде сызыңыздар.</li>
+                            <li>SMS-код пен Authenticator қосымшасының айырмашылығын түсіндіріңіз.</li>
+                            <li>2FA қосудың пайдасын дәлелдеңіз.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Group 3 -->
+                <div class="gradient-card p-6 rounded-2xl border-l-4 border-l-emerald-500 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">3-ТОП</span>
+                        <i class="fa-solid fa-virus-slash text-slate-500"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white">"Антивирус Детективтері"</h4>
+                    <div class="p-3 bg-slate-900/70 rounded-xl text-xs text-slate-300 space-y-2 border border-slate-800">
+                        <p class="font-semibold text-emerald-300">Кейс жағдаят:</p>
+                        <p>Компьютер кенеттен баяулап, экранда белгісіз жарнамалар шыға бастады. Файлдар ашылмай калды.</p>
+                    </div>
+                    <div class="space-y-1 text-xs text-slate-400">
+                        <p class="font-semibold text-slate-200">Тапсырмалар:</p>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li>Компьютерде вирус бар екенін білдіретін белгілерді тізімдеңіз.</li>
+                            <li>Антивирустық бағдарламалардың 3 негізгі қызметін атаңыз.</li>
+                            <li>Вирустан қорғанудың қадамдық нұсқаулығын (буклет) дайындаңыз.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Group 4 -->
+                <div class="gradient-card p-6 rounded-2xl border-l-4 border-l-amber-500 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">4-ТОП</span>
+                        <i class="fa-solid fa-box-archive text-slate-500"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white">"Мұрағаттау Архитекторлары"</h4>
+                    <div class="p-3 bg-slate-900/70 rounded-xl text-xs text-slate-300 space-y-2 border border-slate-800">
+                        <p class="font-semibold text-amber-300">Кейс жағдаят:</p>
+                        <p>Оқушы 50 суреттен тұратын жобаны мұғалімге электронды поштамен жіберуі керек, бірақ файл көлемі өте үлкен болып тұр.</p>
+                    </div>
+                    <div class="space-y-1 text-xs text-slate-400">
+                        <p class="font-semibold text-slate-200">Тапсырмалар:</p>
+                        <ul class="list-disc pl-4 space-y-1">
+                            <li>Мұрағаттаудың (ZIP/RAR) 2 басты артықшылығын жазыңыз.</li>
+                            <li>Файлды мұрағатқа орналастыру және шифрлау алгоритмін ұсыныңыз.</li>
+                            <li>Сақтық көшірме (Backup) жасау ережелерін түсіндіріңіз.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: PAIR WORK -->
+        <section id="tab-pair" class="tab-content hidden space-y-8">
+            <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                <i class="fa-solid fa-user-group text-2xl text-emerald-400"></i>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Жұптық жұмыс: "Диалог және Тексеру"</h3>
+                    <p class="text-xs text-slate-400">Қасыңыздағы сыныптасыңызбен бірге орындаңыз.</p>
+                </div>
+            </div>
+
+            <!-- Task 1: Peer Audit -->
+            <div class="gradient-card p-6 rounded-2xl border border-slate-700 space-y-4">
+                <h4 class="font-bold text-white text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-clipboard-check text-emerald-400"></i> 1-Тапсырма: "Өзара қауіпсіздік аудиті"
+                </h4>
+                <p class="text-xs text-slate-300">
+                    Жұбыңызбен бірге төмендегі сұрақтар бойынша өзара сұхбат жүргізіп, бірін-біріңіздің киберқауіпсіздік деңгейлеріңізді бағалаңыздар.
+                </p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left text-slate-300 border border-slate-700 rounded-xl">
+                        <thead class="bg-slate-800 text-slate-200">
+                            <tr>
+                                <th class="p-3 border-b border-slate-700">Тексеру сұрағы</th>
+                                <th class="p-3 border-b border-slate-700 text-center w-24">Иә / Жоқ</th>
+                                <th class="p-3 border-b border-slate-700">Жұбыңызға ұсынысыңыз</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800">
+                            <tr>
+                                <td class="p-3">1. Соңғы рет құпиясөзіңізді қашан өзгерттіңіз? Онда арнайы белгілер бар ма?</td>
+                                <td class="p-3 text-center"><input type="checkbox" class="w-4 h-4 accent-emerald-500"></td>
+                                <td class="p-3"><input type="text" placeholder="Пікір жазыңыз..." class="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">2. Маңызды аккаунттарыңызға (Google, Күнделік) 2FA қосылған ба?</td>
+                                <td class="p-3 text-center"><input type="checkbox" class="w-4 h-4 accent-emerald-500"></td>
+                                <td class="p-3"><input type="text" placeholder="Пікір жазыңыз..." class="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">3. Компьютеріңізде антивирус қосулы және жаңартылған ба?</td>
+                                <td class="p-3 text-center"><input type="checkbox" class="w-4 h-4 accent-emerald-500"></td>
+                                <td class="p-3"><input type="text" placeholder="Пікір жазыңыз..." class="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">4. Мұрағаттау бағдарламасын (WinRAR/7-Zip) қолдана аласыз ба?</td>
+                                <td class="p-3 text-center"><input type="checkbox" class="w-4 h-4 accent-emerald-500"></td>
+                                <td class="p-3"><input type="text" placeholder="Пікір жазыңыз..." class="w-full bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Task 2: Term Matching Game -->
+            <div class="gradient-card p-6 rounded-2xl border border-slate-700 space-y-4">
+                <div class="flex justify-between items-center">
+                    <h4 class="font-bold text-white text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-puzzle-piece text-amber-400"></i> 2-Тапсырма: "Терминдер мен анықтамаларды сәйкестендіру"
+                    </h4>
+                    <button onclick="resetMatching()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700">
+                        <i class="fa-solid fa-rotate mr-1"></i> Қайта бастау
+                    </button>
+                </div>
+                
+                <p class="text-xs text-slate-300">Сол жақтағы ұғымды басып, содан соң оң жақтағы оған сәйкес анықтаманы таңдаңыз:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="matching-container">
+                    <!-- Terms Left -->
+                    <div class="space-y-2" id="terms-column">
+                        <div onclick="selectTerm(this, 't1')" data-id="t1" class="match-term p-3 bg-slate-900 border border-slate-700 rounded-xl text-xs font-semibold text-white cursor-pointer hover:border-blue-500 transition">
+                            1. Екі сатылы аутентификация
+                        </div>
+                        <div onclick="selectTerm(this, 't2')" data-id="t2" class="match-term p-3 bg-slate-900 border border-slate-700 rounded-xl text-xs font-semibold text-white cursor-pointer hover:border-blue-500 transition">
+                            2. Мұрағаттау (ZIP/RAR)
+                        </div>
+                        <div onclick="selectTerm(this, 't3')" data-id="t3" class="match-term p-3 bg-slate-900 border border-slate-700 rounded-xl text-xs font-semibold text-white cursor-pointer hover:border-blue-500 transition">
+                            3. Брандмауэр / Файрвол
+                        </div>
+                        <div onclick="selectTerm(this, 't4')" data-id="t4" class="match-term p-3 bg-slate-900 border border-slate-700 rounded-xl text-xs font-semibold text-white cursor-pointer hover:border-blue-500 transition">
+                            4. Фишинг (Phishing)
+                        </div>
+                    </div>
+
+                    <!-- Definitions Right -->
+                    <div class="space-y-2" id="defs-column">
+                        <div onclick="selectDef(this, 't3')" data-id="t3" class="match-def p-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-slate-300 cursor-pointer hover:border-emerald-500 transition">
+                            А. Желілік трафикті сүзетін және рұқсатсыз кіруді бұғаттайтын қорғаныс экраны.
+                        </div>
+                        <div onclick="selectDef(this, 't1')" data-id="t1" class="match-def p-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-slate-300 cursor-pointer hover:border-emerald-500 transition">
+                            Ә. Құпиясөзбен қатар екінші уақытша растау кодын талап ететін қорғаныс.
+                        </div>
+                        <div onclick="selectDef(this, 't4')" data-id="t4" class="match-def p-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-slate-300 cursor-pointer hover:border-emerald-500 transition">
+                            Б. Пайдаланушының құпия мәліметтерін (пароль, карта) алдап алуға бағытталған кибер-алаяқтық.
+                        </div>
+                        <div onclick="selectDef(this, 't2')" data-id="t2" class="match-def p-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-slate-300 cursor-pointer hover:border-emerald-500 transition">
+                            В. Файлдар көлемін кішірейту және оларды бір ағынға біріктіріп сығу процесі.
+                        </div>
+                    </div>
+                </div>
+                <div id="match-score" class="text-xs font-semibold text-emerald-400 mt-2"></div>
+            </div>
+        </section>
+
+        <!-- TAB 5: INDIVIDUAL TASKS -->
+        <section id="tab-individual" class="tab-content hidden space-y-8">
+            <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                <i class="fa-solid fa-user-check text-2xl text-cyan-400"></i>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Жеке тапсырмалар мен Интерактивті Тест</h3>
+                    <p class="text-xs text-slate-400">Өз біліміңізді жеке тексеріп, автоматты бағаңызды алыңыз.</p>
+                </div>
+            </div>
+
+            <!-- Task 1: Password Sorting -->
+            <div class="gradient-card p-6 rounded-2xl border border-slate-700 space-y-4">
+                <h4 class="font-bold text-white text-base flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-cyan-400"></i> 1-Тапсырма: Құпиясөздерді жіктеу
+                </h4>
+                <p class="text-xs text-slate-300">Төменде берілген құпиясөздердің қайсысы <strong>Сенімді</strong>, қайсысы <strong>Әлсіз</strong> екенін анықтаңыз:</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center">
+                        <span class="font-mono text-sm text-amber-300">qwerty2023</span>
+                        <select onchange="checkPassClass(this, 'weak')" class="bg-slate-800 text-xs text-white px-2 py-1 rounded border border-slate-700 focus:outline-none">
+                            <option value="">Таңдаңыз...</option>
+                            <option value="strong">Сенімді</option>
+                            <option value="weak">Әлсіз</option>
+                        </select>
+                    </div>
+                    <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center">
+                        <span class="font-mono text-sm text-emerald-300">Tr0n9#P@ss2026</span>
+                        <select onchange="checkPassClass(this, 'strong')" class="bg-slate-800 text-xs text-white px-2 py-1 rounded border border-slate-700 focus:outline-none">
+                            <option value="">Таңдаңыз...</option>
+                            <option value="strong">Сенімді</option>
+                            <option value="weak">Әлсіз</option>
+                        </select>
+                    </div>
+                    <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center">
+                        <span class="font-mono text-sm text-amber-300">12345678</span>
+                        <select onchange="checkPassClass(this, 'weak')" class="bg-slate-800 text-xs text-white px-2 py-1 rounded border border-slate-700 focus:outline-none">
+                            <option value="">Таңдаңыз...</option>
+                            <option value="strong">Сенімді</option>
+                            <option value="weak">Әлсіз</option>
+                        </select>
+                    </div>
+                    <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center">
+                        <span class="font-mono text-sm text-emerald-300">Kz!987$MekTep</span>
+                        <select onchange="checkPassClass(this, 'strong')" class="bg-slate-800 text-xs text-white px-2 py-1 rounded border border-slate-700 focus:outline-none">
+                            <option value="">Таңдаңыз...</option>
+                            <option value="strong">Сенімді</option>
+                            <option value="weak">Әлсіз</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task 2: Interactive Test (5 Questions) -->
+            <div class="gradient-card p-6 rounded-2xl border border-slate-700 space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                    <h4 class="font-bold text-white text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-blue-400"></i> Интерактивті Қалыптастырушы Тест (5 сұрақ)
+                    </h4>
+                    <span id="quiz-status" class="text-xs text-slate-400">0 / 5 орындалды</span>
+                </div>
+
+                <form id="quiz-form" class="space-y-6">
+                    <!-- Q1 -->
+                    <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">1. Сенімді құпиясөздің басты талабы қайсысы?</p>
+                        <div class="space-y-2 text-xs text-slate-300">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q1" value="A" class="accent-blue-500"> A) Тек туған күн мен аты-жөнінен тұруы керек
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q1" value="B" class="accent-blue-500"> B) Кемінде 8-12 таңба, бас/кіші әріптер, цифрлар мен арнайы белгілерден тұруы тиіс
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q1" value="C" class="accent-blue-500"> C) Барлық сайтқа бірдей құпиясөз қою керек
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">2. Екі сатылы аутентификацияның (2FA) басты артықшылығы неде?</p>
+                        <div class="space-y-2 text-xs text-slate-300">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q2" value="A" class="accent-blue-500"> A) Интернет жылдамдығын арттырады
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q2" value="B" class="accent-blue-500"> B) Құпиясөз ұрланған күннің өзінде екінші растау кодынсыз аккаунтқа кіргізбейді
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q2" value="C" class="accent-blue-500"> C) Компьютерді вирустан автоматты түрде тазалайды
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">3. Антивирустық бағдарламаның негізгі қызметіне не жатпайды?</p>
+                        <div class="space-y-2 text-xs text-slate-300">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q3" value="A" class="accent-blue-500"> A) Файлдардың көлемін сығып,ZIP мұрағат жасау
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q3" value="B" class="accent-blue-500"> B) Зиянды бағдарламаларды сканерлеу және жою
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q3" value="C" class="accent-blue-500"> C) Қауіпті файлдарды карантинге орналастыру
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">4. Деректерді мұрағаттау (WinRAR, 7-Zip) не үшін қажет?</p>
+                        <div class="space-y-2 text-xs text-slate-300">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q4" value="A" class="accent-blue-500"> A) Файлдардың көлемін кішірейту және бірнеше файлды бір ағынға біріктіріп сақтау үшін
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q4" value="B" class="accent-blue-500"> B) Тек видео файлдарды қарау үшін
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q4" value="C" class="accent-blue-500"> C) Компьютерге жаңа монитор қосу үшін
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-3">
+                        <p class="text-sm font-semibold text-white">5. Компьютердегі маңызды құжаттарды жоғалтып алмау үшін қандай шара ең тиімді?</p>
+                        <div class="space-y-2 text-xs text-slate-300">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q5" value="A" class="accent-blue-500"> A) Экранның жарықтығын төмендету
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q5" value="B" class="accent-blue-500"> B) Файлдарды мұрағаттап, бұлттық дискіге немесе флешкаға сақтық көшірме (Backup) жасау
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="q5" value="C" class="accent-blue-500"> C) Тек мониторды өшіріп қою
+                            </label>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-slate-800">
+                    <button type="button" onclick="submitQuiz()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm px-6 py-3 rounded-xl transition shadow-lg shadow-blue-600/30">
+                        Тестіні аяқтау және бағаны көру
+                    </button>
+                    <div id="quiz-score-box" class="hidden text-right">
+                        <div class="text-xs text-slate-400">Нәтиже:</div>
+                        <div id="quiz-score-text" class="text-xl font-bold text-emerald-400">5 / 5 (100%)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: RUBRICS & ASSESSMENT -->
+        <section id="tab-rubrics" class="tab-content hidden space-y-8">
+            <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                <i class="fa-solid fa-square-poll-vertical text-2xl text-purple-400"></i>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Бағалау критерийлері мен дескрипторлар</h3>
+                    <p class="text-xs text-slate-400">7.4.1.1 оқу мақсаты бойынша бағалау шкаласы</p>
+                </div>
+            </div>
+
+            <div class="gradient-card p-6 rounded-2xl border border-slate-700 overflow-x-auto">
+                <table class="w-full text-xs text-left text-slate-300 border border-slate-700">
+                    <thead class="bg-slate-800 text-slate-200">
+                        <tr>
+                            <th class="p-3 border-b border-slate-700">Бағалау критерийі</th>
+                            <th class="p-3 border-b border-slate-700">Оқушы орындай алады (Дескриптор)</th>
+                            <th class="p-3 border-b border-slate-700 text-center">Балл</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800">
+                        <tr>
+                            <td class="p-3 font-semibold text-white">1. Сенімді құпиясөз құрастыру</td>
+                            <td class="p-3">Сенімді құпиясөздің талаптарын біледі, күрделі құпиясөздерді әлсіздерінен ажыратады және дербес құрастырады.</td>
+                            <td class="p-3 text-center font-bold text-blue-400">3 балл</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-white">2. 2FA механизмін түсіну</td>
+                            <td class="p-3">Екі сатылы аутентификацияның маңыздылығын түсіндіреді және кіруді растау қадамдарын көрсетеді.</td>
+                            <td class="p-3 text-center font-bold text-blue-400">2 балл</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-white">3. Антивирус ролін сипаттау</td>
+                            <td class="p-3">Антивирустық бағдарламалардың түрлерін, олардың жүйені вирус пен зиянды файлдардан қорғау қызметтерін сипаттайды.</td>
+                            <td class="p-3 text-center font-bold text-blue-400">3 балл</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold text-white">4. Деректерді мұрағаттау</td>
+                            <td class="p-3">Файлдарды мұрағаттау мақсатын біледі, ZIP/RAR форматында сығу және сақтық көшірме жасау маңыздылығын негіздейді.</td>
+                            <td class="p-3 text-center font-bold text-blue-400">2 балл</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Total Score Summary Card -->
+            <div class="gradient-card p-6 rounded-2xl border border-purple-500/30 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                    <h4 class="font-bold text-white text-base">Жалпы жиынтық бағалау: 10 балл</h4>
+                    <p class="text-xs text-slate-400">Қалыптастырушы бағалау критерийлеріне сәйкес құрастырылған.</p>
+                </div>
+                <div class="flex gap-2">
+                    <span class="px-3 py-1.5 bg-emerald-500/20 text-emerald-300 text-xs font-semibold rounded-lg border border-emerald-500/30">8-10 балл: Жоғары</span>
+                    <span class="px-3 py-1.5 bg-amber-500/20 text-amber-300 text-xs font-semibold rounded-lg border border-amber-500/30">5-7 балл: Орташа</span>
+                    <span class="px-3 py-1.5 bg-red-500/20 text-red-300 text-xs font-semibold rounded-lg border border-red-500/30">1-4 балл: Төмен</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-900 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Информатика пәні. 7-сынып "Жеке қауіпсіздік және сервистік программалардың рөлі" оқу интерактивті ресурсы.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        // 1. Password Tester Logic
+        function testPassword() {
+            const val = document.getElementById('pass-input').value;
+            const meter = document.getElementById('pass-meter');
+            const scoreText = document.getElementById('pass-score-text');
+            const badge = document.getElementById('pass-badge');
+
+            let score = 0;
+
+            const cLen = val.length >= 8;
+            const cUpper = /[A-Z]/.test(val);
+            const cLower = /[a-z]/.test(val);
+            const cNum = /[0-9]/.test(val);
+            const cSym = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(val);
+
+            updateCheckUI('c-len', cLen);
+            updateCheckUI('c-upper', cUpper);
+            updateCheckUI('c-lower', cLower);
+            updateCheckUI('c-num', cNum);
+            updateCheckUI('c-sym', cSym);
+
+            if (cLen) score += 20;
+            if (cUpper) score += 20;
+            if (cLower) score += 20;
+            if (cNum) score += 20;
+            if (cSym) score += 20;
+
+            meter.style.width = score + '%';
+            scoreText.textContent = score + '%';
+
+            if (score < 40) {
+                meter.className = 'bg-red-500 h-full transition-all duration-500';
+                badge.className = 'text-xs px-2.5 py-1 rounded font-semibold bg-red-500/20 text-red-300 border border-red-500/30';
+                badge.textContent = 'Өте әлсіз';
+            } else if (score < 80) {
+                meter.className = 'bg-amber-500 h-full transition-all duration-500';
+                badge.className = 'text-xs px-2.5 py-1 rounded font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30';
+                badge.textContent = 'Орташа';
+            } else {
+                meter.className = 'bg-emerald-500 h-full transition-all duration-500';
+                badge.className = 'text-xs px-2.5 py-1 rounded font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+                badge.textContent = 'Өте сенімді!';
+            }
+        }
+
+        function updateCheckUI(id, isMet) {
+            const el = document.getElementById(id);
+            if (isMet) {
+                el.className = 'text-emerald-400 flex items-center gap-2 font-medium';
+                el.querySelector('i').className = 'fa-solid fa-circle-check';
+            } else {
+                el.className = 'text-slate-500 flex items-center gap-2';
+                el.querySelector('i').className = 'fa-regular fa-circle';
+            }
+        }
+
+        function generateRandomPassword() {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+            let res = "";
+            for (let i = 0; i < 12; i++) {
+                res += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('pass-input').value = res;
+            testPassword();
+        }
+
+        // 2. 2FA Simulator Logic
+        let currentOTP = null;
+        function request2FACode() {
+            currentOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            document.getElementById('otp-code').textContent = currentOTP;
+            document.getElementById('otp-result').className = 'p-3 bg-indigo-500/10 rounded-xl text-xs font-medium text-indigo-300 border border-indigo-500/30';
+            document.getElementById('otp-result').textContent = 'SMS арқылы растау коды жіберілді! Кодты енгізіңіз.';
+        }
+
+        function verify2FA() {
+            const inputVal = document.getElementById('otp-input').value.trim();
+            const resEl = document.getElementById('otp-result');
+            if (!currentOTP) {
+                resEl.textContent = 'Алдымен "Код жіберу" түймесін басыңыз!';
+                resEl.className = 'p-3 bg-amber-500/10 rounded-xl text-xs font-medium text-amber-300 border border-amber-500/30';
+                return;
+            }
+            if (inputVal === currentOTP) {
+                resEl.textContent = 'Сәтті! 2FA расталды. Есептік жазбаңызға қауіпсіз кірдіңіз!';
+                resEl.className = 'p-3 bg-emerald-500/10 rounded-xl text-xs font-medium text-emerald-300 border border-emerald-500/30';
+            } else {
+                resEl.textContent = 'Қате код! Тексеріп, қайта енгізіңіз.';
+                resEl.className = 'p-3 bg-red-500/10 rounded-xl text-xs font-medium text-red-300 border border-red-500/30';
+            }
+        }
+
+        // 3. App Type Checker
+        function checkAppType(appName, type) {
+            const res = document.getElementById('app-type-result');
+            if (type === 'archive') {
+                res.innerHTML = `<span class="text-amber-400 font-bold">${appName}</span> — Файлдарды мұрағаттау бағдарламасы (Архиватор). Дұрыс!`;
+            } else {
+                res.innerHTML = `<span class="text-emerald-400 font-bold">${appName}</span> — Компьютерді зиянды бағдарламалардан қорғайтын Антивирус. Дұрыс!`;
+            }
+        }
+
+        // 4. Timer Logic
+        let timerInterval = null;
+        let timeLeft = 600; // 10 mins
+        function toggleTimer() {
+            const btn = document.getElementById('timer-btn');
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+                btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+            } else {
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        timerInterval = null;
+                    }
+                }, 1000);
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            }
+        }
+
+        function resetTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+            timeLeft = 600;
+            updateTimerDisplay();
+            document.getElementById('timer-btn').innerHTML = '<i class="fa-solid fa-play"></i>';
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timeLeft / 60);
+            const secs = timeLeft % 60;
+            document.getElementById('timer-display').textContent = 
+                `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        // 5. Matching Task Logic
+        let selectedTermEl = null;
+        let selectedTermId = null;
+        let matchedCount = 0;
+
+        function selectTerm(el, id) {
+            if (el.classList.contains('opacity-50')) return;
+            document.querySelectorAll('.match-term').forEach(t => t.classList.remove('border-blue-500', 'bg-blue-900/40'));
+            selectedTermEl = el;
+            selectedTermId = id;
+            el.classList.add('border-blue-500', 'bg-blue-900/40');
+        }
+
+        function selectDef(el, id) {
+            if (!selectedTermId || el.classList.contains('opacity-50')) return;
+            if (selectedTermId === id) {
+                // Correct match
+                selectedTermEl.classList.add('opacity-50', 'bg-emerald-900/30', 'border-emerald-500');
+                el.classList.add('opacity-50', 'bg-emerald-900/30', 'border-emerald-500');
+                matchedCount++;
+                document.getElementById('match-score').textContent = `Табылған сәйкестіктер: ${matchedCount} / 4`;
+                selectedTermEl = null;
+                selectedTermId = null;
+            } else {
+                el.classList.add('border-red-500');
+                setTimeout(() => el.classList.remove('border-red-500'), 800);
+            }
+        }
+
+        function resetMatching() {
+            selectedTermEl = null;
+            selectedTermId = null;
+            matchedCount = 0;
+            document.getElementById('match-score').textContent = '';
+            document.querySelectorAll('.match-term, .match-def').forEach(el => {
+                el.className = el.classList.contains('match-term') 
+                    ? 'match-term p-3 bg-slate-900 border border-slate-700 rounded-xl text-xs font-semibold text-white cursor-pointer hover:border-blue-500 transition'
+                    : 'match-def p-3 bg-slate-900 border border-slate-700 rounded-xl text-xs text-slate-300 cursor-pointer hover:border-emerald-500 transition';
+            });
+        }
+
+        // 6. Password Classification check
+        function checkPassClass(selectEl, correctType) {
+            if (selectEl.value === correctType) {
+                selectEl.className = 'bg-emerald-900/50 text-emerald-300 border border-emerald-500 text-xs px-2 py-1 rounded focus:outline-none';
+            } else if (selectEl.value !== "") {
+                selectEl.className = 'bg-red-900/50 text-red-300 border border-red-500 text-xs px-2 py-1 rounded focus:outline-none';
+            }
+        }
+
+        // 7. Submit Quiz
+        function submitQuiz() {
+            const answers = { q1: 'B', q2: 'B', q3: 'A', q4: 'A', q5: 'B' };
+            let score = 0;
+
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected && selected.value === answers[q]) {
+                    score++;
+                }
+            }
+
+            document.getElementById('quiz-status').textContent = `5 / 5 орындалды`;
+            const scoreBox = document.getElementById('quiz-score-box');
+            const scoreText = document.getElementById('quiz-score-text');
+            scoreBox.classList.remove('hidden');
+            
+            const percent = (score / 5) * 100;
+            scoreText.textContent = `${score} / 5 (${percent}%)`;
+        }
+    </script>
+</body>
+</html>
